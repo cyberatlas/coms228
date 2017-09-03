@@ -14,14 +14,20 @@ public class Sequence
     seqarr = new char[sarr.length];
     for (int i= 0; i <sarr.length; i++){
 
-      //TODO If is false throw specified error, if true add character to seqarr
-
-     if (isValidLetter(sarr[i])){
+        //TODO If is false throw specified error, if true add character to seqarr
+        if (isValidLetter(sarr[i])){
          seqarr(i) = sarr(1);
-     }
+     } else{
+            //TODO find out what class I need to throw from instad of the one I have defined
+            throw new IllegalArgumentException("Invalid sequence letter for class edu.iastate.cs228.hw1.Sequence");
+        }
     }
   }
 
+    /**
+     * This method returns the length of the squence
+     * @return length of the sequence
+     */
   public int seqLength()
   {
     // TODO
