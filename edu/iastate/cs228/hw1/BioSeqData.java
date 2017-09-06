@@ -4,7 +4,7 @@ package edu.iastate.cs228.hw1;
  * Example code
 */
 
-import java.util.Arrays; // This is just for the output statements below.
+import java.util.Arrays;
 // You should not import any class in this assignment, but are allowed
 // to use any classes and methods already recognized by the Java compiler.
 
