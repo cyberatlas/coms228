@@ -55,7 +55,7 @@ public class DNASequence extends Sequence
  
   public void reverseComplement()
   {
-    
+
     char[] temp = Arrays.copOf(getReverseCompSeq(), getReverseCompSeq().length);
     for (int i =0; i < seqarr.length; i++){
       seqarr[i] = temp[i]
