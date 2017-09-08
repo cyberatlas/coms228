@@ -6,20 +6,54 @@ package edu.iastate.cs228.hw1;
 
 public class CodingDNASequence extends DNASequence
 {
+
+  private char[] cdnaarr;
   public CodingDNASequence(char[] cdnaarr)
   {
-    // TODO
+
+    super();
+    //Loop through cdnaarr and make sure all the letters are valid
+    for(int i= 0; i < cdnaarr.length; i++){
+      if!(isValidLetter(cndnaarr[i])){
+        throw IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
+      }
+    }
+    this.cdnaarr = Arrays.copyOf(cdnaarr, 0, cdnaarr.length);
   }
 
   public boolean checkStartCodon()
   {
-    // TODO
+
+    if (seqarr.legth < 3){
+      return false;
+    }
+    if (seqarr[0].toUpperCase() == 'A' && seqarr[1].toUpperCase() == 'T' && seqarr[2].toUpperCase() == 'G') {
+      return true;
+    }
+    return false;
   }
 
   public char[] translate()
   {
     // TODO
+
+    ArrayList<Character> protein = new ArrayList<>();
+
+    if!(checkStartCodon()){
+      throw RuntimeException("No start codon");
+    }
+
+    //Translating the coding sequence in seqarr to protien sequence
+    //Loops through 3 at a time, creates a string out of the 3 selected characters.
+    //TODO find a a way to deal with characters that are not of a length that is a percfect facor of 3
+    //Finds the protein associated with that, adds it to the array list
+    for (int i = 0; i < seqarr.length; i+=3){
+      String codon = "" + seqarr[i] + seqarr[i+1] = seqarr[i+2];
+      protein.add(getAminoAcid(codon));
+    }
+    return protein.toArray();
   }
+
 
   private char getAminoAcid(String codon)
   {

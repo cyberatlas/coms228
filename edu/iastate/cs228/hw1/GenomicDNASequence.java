@@ -6,15 +6,15 @@ package edu.iastate.cs228.hw1;
 
 public class GenomicDNASequence extends DNASequence
 {
-  super();
   public boolean[] iscoding; // made public instead of private for grading.
 
   public GenomicDNASequence(char[] gdnaarr)
   {
     // TODO
+    super();
     for (i=0; i<gdnaarr.length; i++){
       if !(gdnaarr.isValidLetter()){
-        throw IllegalArgumentArgumentException("invalid sequence letter for class edu.iastate.cs228.hw1.GeonomicDNASequence");
+        throw IllegalArgumentArgumentException("Invalid sequence letter for class edu.iastate.cs228.hw1.GeonomicDNASequence");
       }
     }
     //Creates Boolean array with the name isCoding of the same length as gdnaarr
@@ -31,7 +31,6 @@ public class GenomicDNASequence extends DNASequence
       throw IllegalArgumentException("Coding border is out of bound")
     }
     //if first greater than lasdt, obtain coding strand by alling reverseCompliment() and transform first and last  with slen -1 -x
-    //
     if (first > last){
       first = (slen-1-first);
       last = (slen-1-last);
@@ -46,15 +45,33 @@ public class GenomicDNASequence extends DNASequence
 
   public char[] extractExons(int[] exonpos) {
     // TODO
+    //Creating the arraylist that will be used later
+    Arraylist<Character> concat = new ArrayList<>();
     //throws IllegalArgumentException if exonpos is 0 or odd
     if (exonpos.length() == 0 || exonpos.length % 2 != 0) {
       throw IllegalArgumentException("Empty array or odd number of elements");
     }
     for (int i =0; i < exonpos.length; i++){
       if (exonpos[i]<0 || exonpos[i] >= seqLength()){
-        throw IllegalArgumentException("Exon position is out of bound")
+        throw IllegalArgumentException("Exon position is out of bound");
+      }
+      if (i != exonpos.length && exonpos[i] > exonpos[i+1]){
+        throw IllegalArgumentException("Exon positions are not in order");
+      }
+      //TODO
+      //how to throw the illegal state exception?
+      //The following code executes if i is 0 or even.
+      if (i%2 == 0){
+        //Creates a sub using the values of exonpos[i] and exonpos[i+1]
+        char[] temp =  Array.CopyOfRange(seqarr, exonpos[i], exonpos[i+1]);
+        //loops through that array and add those characters to the arraylist
+        for (int j = exonpos[i]; j < exonpos[i+1]; j++){
+          concat.add(temp[j]);
+        }
       }
     }
+    //After everything is all said and done, the Arraylist is returned as an array
+    return concat.toArray();
   }
 
 
