@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_Y0XfII2QEeeRw6BGeZqTIQ" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_Y0Z7YI2QEeeRw6BGeZqTIQ" bindingContexts="_Y0cYdo2QEeeRw6BGeZqTIQ">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BioSeqData.java&quot; tooltip=&quot;edu/iastate/cs228/hw1/BioSeqData.java&quot;>&#xA;&lt;persistable path=&quot;/edu/iastate/cs228/hw1/BioSeqData.java&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;DNASequence.java&quot; tooltip=&quot;edu/iastate/cs228/hw1/DNASequence.java&quot;>&#xA;&lt;persistable path=&quot;/edu/iastate/cs228/hw1/DNASequence.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BioSeqData.java&quot; tooltip=&quot;edu/iastate/cs228/hw1/BioSeqData.java&quot;>&#xA;&lt;persistable path=&quot;/edu/iastate/cs228/hw1/BioSeqData.java&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_Y0Z7YI2QEeeRw6BGeZqTIQ" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_Y0Z7YY2QEeeRw6BGeZqTIQ" label="%trimmedwindow.label.eclipseSDK" x="42" y="80" width="1024" height="768">
@@ -145,17 +145,15 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_Y0bKpI2QEeeRw6BGeZqTIQ" elementId="org.eclipse.ui.editorss" selectedElement="_Y0bKpY2QEeeRw6BGeZqTIQ">
-      <children xsi:type="basic:PartStack" xmi:id="_Y0bKpY2QEeeRw6BGeZqTIQ" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_Y0bKpo2QEeeRw6BGeZqTIQ">
+      <children xsi:type="basic:PartStack" xmi:id="_Y0bKpY2QEeeRw6BGeZqTIQ" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_C8SqkJQdEeeQF4PU5brAoA">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_Y0bKpo2QEeeRw6BGeZqTIQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="BioSeqData.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BioSeqData.java&quot; partName=&quot;BioSeqData.java&quot; title=&quot;BioSeqData.java&quot; tooltip=&quot;edu/iastate/cs228/hw1/BioSeqData.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/edu/iastate/cs228/hw1/BioSeqData.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;343&quot; selectionTopPixel=&quot;22&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BioSeqData.java&quot; partName=&quot;BioSeqData.java&quot; title=&quot;BioSeqData.java&quot; tooltip=&quot;edu/iastate/cs228/hw1/BioSeqData.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/edu/iastate/cs228/hw1/BioSeqData.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;343&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_Y0bKp42QEeeRw6BGeZqTIQ" elementId="#CompilationUnitEditorContext">
             <tags>menuContribution:popup</tags>
             <tags>popup:#CompilationUnitEditorContext</tags>
@@ -172,6 +170,14 @@
             <tags>menuContribution:popup</tags>
             <tags>popup:#OverviewRulerContext</tags>
           </menus>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_C8SqkJQdEeeQF4PU5brAoA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="DNASequence.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;DNASequence.java&quot; partName=&quot;DNASequence.java&quot; title=&quot;DNASequence.java&quot; tooltip=&quot;edu/iastate/cs228/hw1/DNASequence.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/edu/iastate/cs228/hw1/DNASequence.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2809&quot; selectionTopPixel=&quot;958&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
+          <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
         </children>
       </children>
     </sharedElements>
@@ -329,7 +335,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Y0bw3I2QEeeRw6BGeZqTIQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_uXniMI2xEeeUH_E3E36PMw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_Y0fcIY2QEeeRw6BGeZqTIQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_xSHu4JQcEeeQF4PU5brAoA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_Y0fcIY2QEeeRw6BGeZqTIQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Y0bw6o2QEeeRw6BGeZqTIQ" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -353,7 +359,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Y0bxMo2QEeeRw6BGeZqTIQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_uXqlgY2xEeeUH_E3E36PMw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_Y0fblY2QEeeRw6BGeZqTIQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_xSMnYJQcEeeQF4PU5brAoA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_Y0fblY2QEeeRw6BGeZqTIQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Y0bxPY2QEeeRw6BGeZqTIQ" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -847,7 +853,7 @@
       <tags>platform:cocoa</tags>
       <parameters xmi:id="_Y0cYBY2QEeeRw6BGeZqTIQ" elementId="org.eclipse.ui.views.showView.viewId" name="org.eclipse.ui.views.showView.viewId" value="org.eclipse.jdt.ui.JavadocView"/>
     </bindings>
-    <bindings xmi:id="_tQHHkY2xEeeUH_E3E36PMw" keySequence="COMMAND+CTRL+F" command="_Y0fdRY2QEeeRw6BGeZqTIQ"/>
+    <bindings xmi:id="_wRO5oZQcEeeQF4PU5brAoA" keySequence="COMMAND+CTRL+F" command="_Y0fdRY2QEeeRw6BGeZqTIQ"/>
   </bindingTables>
   <bindingTables xmi:id="_Y0cYB42QEeeRw6BGeZqTIQ" elementId="org.eclipse.mylyn.tasks.ui.views.tasks" bindingContext="_Y0cYmY2QEeeRw6BGeZqTIQ">
     <bindings xmi:id="_Y0cYCI2QEeeRw6BGeZqTIQ" keySequence="ALT+SHIFT+ARROW_DOWN" command="_Y0fchI2QEeeRw6BGeZqTIQ"/>
@@ -954,7 +960,7 @@
     <bindings xmi:id="_Y0cYUI2QEeeRw6BGeZqTIQ" keySequence="F1" command="_Y0e0-I2QEeeRw6BGeZqTIQ"/>
   </bindingTables>
   <bindingTables xmi:id="_Y0cYUY2QEeeRw6BGeZqTIQ" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_Y0cYnI2QEeeRw6BGeZqTIQ">
-    <bindings xmi:id="_tQHuoI2xEeeUH_E3E36PMw" keySequence="M1+W" command="_Y0fdR42QEeeRw6BGeZqTIQ"/>
+    <bindings xmi:id="_wRQHwJQcEeeQF4PU5brAoA" keySequence="M1+W" command="_Y0fdR42QEeeRw6BGeZqTIQ"/>
   </bindingTables>
   <bindingTables xmi:id="_Y0cYU42QEeeRw6BGeZqTIQ" bindingContext="_Y0cYoo2QEeeRw6BGeZqTIQ"/>
   <bindingTables xmi:id="_Y0cYVI2QEeeRw6BGeZqTIQ" bindingContext="_Y0cYo42QEeeRw6BGeZqTIQ"/>

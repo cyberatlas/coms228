@@ -52,7 +52,7 @@ public class DNASequence extends Sequence
     //reverse the sequence and instead of savind the original value, it saves the compliment of the original value
     char[] reverse =  char[seqarr.length];
     for (int i = 0; i < seqarr.length; i++){
-      reverse[i] = compliment([(seqarr.length-i-1)]);
+      reverse[i] = seqarr[compliment(seqarr.length-i)];
     }
     return reverse;
   }
@@ -67,7 +67,7 @@ public class DNASequence extends Sequence
 
     char[] temp = Arrays.copOf(getReverseCompSeq(), getReverseCompSeq().length);
     for (int i =0; i < seqarr.length; i++){
-      seqarr[i] = temp[i];
+      seqarr[i] = temp[i]
     }
   }
 
@@ -77,7 +77,7 @@ public class DNASequence extends Sequence
    * @return the compliment character
    */
   private char compliment(char check){
-    switch(check) {
+    switch(check){
       case 'A': return 'T';
       case 'C': return 'G';
       case 'G': return 'C';
@@ -87,8 +87,9 @@ public class DNASequence extends Sequence
       case 'c': return 'g';
       case 'g': return 'c';
       case 't': return 'a';
-      //should not get to this point. Returning z proves that something is wrong
-      default: return 'z';
+      //default: return 'z';
     }
+    //should not get to this point. Returning z proves that something is wrong
+    return ('z')
   }
 }
