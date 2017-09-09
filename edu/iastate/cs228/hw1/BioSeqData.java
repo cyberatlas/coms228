@@ -28,7 +28,7 @@ public class BioSeqData
       ProteinSequence aademo = new ProteinSequence( cdemo.translate() );
       System.out.println(  "Protein sequence: " + aademo );
     }
-
+ 
     System.out.println( "");
     System.out.println( "A second example");
     String dnastr = new String("GCCTTGTCCATCTGAGTTTCGTAGACGACGTCGTCAATCTGCAGCGGTGGCGGCATGGAAG");

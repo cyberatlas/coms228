@@ -1,19 +1,2 @@
-INDEX VERSION 1.130+/Users/ruski/Documents/coms228/hw1/.metadata/.plugins/org.eclipse.jdt.core
-4127408136.index
-1491307213.index
-3639734245.index
-689424933.index
-2590753327.index
-3427357359.index
-2221295203.index
-2355253489.index
-274973108.index
-107715650.index
-978166412.index
-1271342938.index
-736392922.index
-3494943228.index
-100746928.index
-3016393792.index
-445261246.index
-3069657775.index
+INDEX VERSION 1.130+C:\Users\Ruski\Documents\coms228\hw1\.metadata\.plugins\org.eclipse.jdt.core
+3481095645.index
