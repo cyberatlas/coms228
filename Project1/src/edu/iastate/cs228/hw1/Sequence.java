@@ -14,9 +14,8 @@ public class Sequence
     seqarr = new char[sarr.length];
     for (int i= 0; i <sarr.length; i++){
 
-        //TODO If is false throw specified error, if true add character to seqarr
         if (isValidLetter(sarr[i])){
-         seqarr(i) = sarr(1);
+         seqarr[i] = sarr[i];
      } else{
             //TODO find out what class I need to throw from instad of the one I have defined
             throw new IllegalArgumentException("Invalid sequence letter for class " + this.getClass());
@@ -39,7 +38,7 @@ public class Sequence
      */
   public char[] getSeq()
   {
-    char[] copy = char[seqarr.length];
+    char[] copy = new char[seqarr.length];
     for (int i= 0; i<seqarr.length; i++){
         copy[i] = seqarr[i];
     }
@@ -81,6 +80,21 @@ public class Sequence
   {
     // returns true or false depending on if the character is uppercase or lowercase
    return Character.isLowerCase(let) || Character.isLowerCase(let);
+  }
+
+    /**
+     * Copies a subsection of an array, like the get subarray method
+     * @param arr the array that you want to copy from
+     * @param start the starting idex of the array you are copying from
+     * @param end the ending index of the array you are copying from
+     * @return a char[] array made up of the substring of the parameter array
+     */
+  public char[] charrayCopy(char[] arr, int start, int end){
+      //Makes a char array of the size end - start +1, this accounts for the start character index
+      char[] newarr = new char[end-start +1];
+      for(int i = start; i < end; i++){
+
+      }
   }
 
 }

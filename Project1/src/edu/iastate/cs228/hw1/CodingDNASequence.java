@@ -8,6 +8,7 @@ public class CodingDNASequence extends DNASequence
 {
 
   private char[] cdnaarr;
+
   public CodingDNASequence(char[] cdnaarr)
   {
 

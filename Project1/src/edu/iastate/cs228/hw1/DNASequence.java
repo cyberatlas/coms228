@@ -7,14 +7,16 @@ package edu.iastate.cs228.hw1;
 public class DNASequence extends Sequence
 {
 
-  super();
 
   /**
    * Should make the
    * @param dnaarr
    */
+
+
   public DNASequence(char[] dnaarr)
   {
+    super();
     //Iterate through and make sure all the characters in the array are valid
     for (int i = 0; i < dnaarr.length; i++){
       if !(isValidLetter(dnaarr[i])) {

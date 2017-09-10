@@ -66,7 +66,7 @@ public class GenomicDNASequence extends DNASequence
         char[] temp =  Array.CopyOfRange(seqarr, exonpos[i], exonpos[i+1]);
         //loops through that array and add those characters to the arraylist
         for (int j = exonpos[i]; j < exonpos[i+1]; j++){
-          concat.add(temp[j]);
+          concat.add(te mp[j]);
         }
       }
     }
