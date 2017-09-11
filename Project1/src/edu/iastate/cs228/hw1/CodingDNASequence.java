@@ -12,26 +12,30 @@ public class CodingDNASequence extends DNASequence
   public CodingDNASequence(char[] cdnaarr)
   {
 
-    super();
+    super(cdnaarr);
     //Loop through cdnaarr and make sure all the letters are valid
     for(int i= 0; i < cdnaarr.length; i++){
-      if!(isValidLetter(cdnaarr[i])){
-        throw IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
+      if(!(isValidLetter(cdnaarr[i]))){
+        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
       }
     }
     this.cdnaarr = charrayCopy(cdnaarr, 0, cdnaarr.length);
   }
 
+  /**
+   * Checks seqarr sure it is longer than 3 characters and starts with ATG
+   * @return false if seqarr is less than 3 character or does not start with ATG, otherwise true
+   */
   public boolean checkStartCodon()
   {
 
-    if (seqarr.legth < 3){
+    if (seqarr.length < 3){
       return false;
     }
-    if (seqarr[0].toUpperCase() == 'A' && seqarr[1].toUpperCase() == 'T' && seqarr[2].toUpperCase() == 'G') {
-      return true;
+    if (!(Character.toUpperCase(seqarr[0]) == 'A' && Character.toUpperCase(seqarr[1]) == 'T' && Character.toUpperCase(seqarr[2]) == 'G')) {
+      return false;
     }
-    return false;
+    return true;
   }
 
   public char[] translate()
@@ -41,7 +45,7 @@ public class CodingDNASequence extends DNASequence
     ArrayList<Character> protein = new ArrayList<>();
 
     if!(checkStartCodon()){
-      throw RuntimeException("No start codon");
+      throw new RuntimeException("No start codon");
     }
 
     //Translating the coding sequence in seqarr to protien sequence
@@ -49,7 +53,7 @@ public class CodingDNASequence extends DNASequence
     //TODO find a a way to deal with characters that are not of a length that is a percfect facor of 3
     //Finds the protein associated with that, adds it to the array list
     for (int i = 0; i < seqarr.length; i+=3){
-      String codon = "" + seqarr[i] + seqarr[i+1] = seqarr[i+2];
+      String codon = ""+ String.valueOf( seqarr[i] + seqarr[i+1] +seqarr[i+2]);
       protein.add(getAminoAcid(codon));
     }
     return protein.toArray();

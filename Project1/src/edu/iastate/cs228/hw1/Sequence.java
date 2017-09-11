@@ -1,7 +1,7 @@
 package edu.iastate.cs228.hw1;
 
 /*
- * @author
+ * @author Alexander Stevenson
 */
 
 public class Sequence

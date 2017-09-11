@@ -16,11 +16,11 @@ public class DNASequence extends Sequence
 
   public DNASequence(char[] dnaarr)
   {
-    super();
+    super(dnaarr);
     //Iterate through and make sure all the characters in the array are valid
     for (int i = 0; i < dnaarr.length; i++){
       if (!(isValidLetter(dnaarr[i]))) {
-        throw IllegalArgumentException("Invalid sequence for class " + this.getClass());
+        throw new IllegalArgumentException("Invalid sequence for class " + this.getClass());
       }
     }
     //TODO
