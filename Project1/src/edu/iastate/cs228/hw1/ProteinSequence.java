@@ -27,7 +27,7 @@ public class ProteinSequence extends Sequence
 
     aa.toUpperCase();
     //Returns true if character arrgument is equal to one of the letters not in the set
-    if !(aa =='B' || aa=='J'||aa=='O'|| aa== 'U' || aa =='X' || a=='Z'){
+    if ((aa =='B' || aa=='J'||aa=='O'|| aa== 'U' || aa =='X' || aa=='Z')){
       return true;
     }
     return false;

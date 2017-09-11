@@ -17,7 +17,6 @@ public class Sequence
         if (isValidLetter(sarr[i])){
          seqarr[i] = sarr[i];
      } else{
-            //TODO find out what class I need to throw from instad of the one I have defined
             throw new IllegalArgumentException("Invalid sequence letter for class " + this.getClass());
         }
     }
@@ -66,8 +65,8 @@ public class Sequence
       //can compare using the following obj1.getClass().equals(obj2.getClass())
       //Then I should check what each object contains
       if (obj!=null && obj.getClass().equals(this.getClass())){
-          //returns true or false, checks if the strings are equal case insensitive
-          return this.getSeq().toUpperCase().equals(obj.getSeq().toUpperCase());
+          // TODO returns true or false, checks if the strings are equal case insensitive
+          return (this.getSeq().toString.toUpperCase()  .equals(obj.getSeq().toString.toUpperCase());
       }
   }
 
@@ -85,7 +84,7 @@ public class Sequence
     /**
      * Copies a subsection of an array, like the get subarray method
      * @param arr the array that you want to copy from
-     * @param start the starting idex of the array you are copying from
+     * @param start the starting index of the array you are copying from
      * @param end the ending index of the array you are copying from
      * @return a char[] array made up of the substring of the parameter array
      */
@@ -95,6 +94,7 @@ public class Sequence
       for(int i = start; i < end; i++){
 
       }
+      return newarr;
   }
 
 }

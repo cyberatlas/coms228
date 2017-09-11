@@ -12,9 +12,9 @@ public class GenomicDNASequence extends DNASequence
   {
     // TODO
     super();
-    for (i=0; i<gdnaarr.length; i++){
-      if !(gdnaarr.isValidLetter()){
-        throw IllegalArgumentArgumentException("Invalid sequence letter for class edu.iastate.cs228.hw1.GeonomicDNASequence");
+    for (int i=0; i<gdnaarr.length; i++){
+      if (!(isValidLetter(gdnaarr[i]))){
+        throw IllegalArgumentException("Invalid sequence letter for class edu.iastate.cs228.hw1.GeonomicDNASequence");
       }
     }
     //Creates Boolean array with the name isCoding of the same length as gdnaarr
@@ -28,7 +28,7 @@ public class GenomicDNASequence extends DNASequence
     int slen = seqLength();
     //If first or last less than 0 throws exception
     if (first < 0 || last<0 || first >= slen || last >= slen ){
-      throw IllegalArgumentException("Coding border is out of bound")
+      throw IllegalArgumentException("Coding border is out of bound");
     }
     //if first greater than lasdt, obtain coding strand by alling reverseCompliment() and transform first and last  with slen -1 -x
     if (first > last){
@@ -63,10 +63,10 @@ public class GenomicDNASequence extends DNASequence
       //The following code executes if i is 0 or even.
       if (i%2 == 0){
         //Creates a sub using the values of exonpos[i] and exonpos[i+1]
-        char[] temp =  Array.CopyOfRange(seqarr, exonpos[i], exonpos[i+1]);
+        char[] temp =  charrayCopy(seqarr, exonpos[i], exonpos[i+1]);
         //loops through that array and add those characters to the arraylist
         for (int j = exonpos[i]; j < exonpos[i+1]; j++){
-          concat.add(te mp[j]);
+          concat.add(temp[j]);
         }
       }
     }

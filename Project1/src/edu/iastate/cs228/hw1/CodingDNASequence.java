@@ -15,11 +15,11 @@ public class CodingDNASequence extends DNASequence
     super();
     //Loop through cdnaarr and make sure all the letters are valid
     for(int i= 0; i < cdnaarr.length; i++){
-      if!(isValidLetter(cndnaarr[i])){
+      if!(isValidLetter(cdnaarr[i])){
         throw IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
       }
     }
-    this.cdnaarr = Arrays.copyOf(cdnaarr, 0, cdnaarr.length);
+    this.cdnaarr = charrayCopy(cdnaarr, 0, cdnaarr.length);
   }
 
   public boolean checkStartCodon()

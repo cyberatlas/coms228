@@ -1,7 +1,7 @@
 package edu.iastate.cs228.hw1;
 
 /*
- * @author
+ * @author Alexander Stevenson
 */
 
 public class DNASequence extends Sequence
@@ -19,14 +19,14 @@ public class DNASequence extends Sequence
     super();
     //Iterate through and make sure all the characters in the array are valid
     for (int i = 0; i < dnaarr.length; i++){
-      if !(isValidLetter(dnaarr[i])) {
+      if (!(isValidLetter(dnaarr[i]))) {
         throw IllegalArgumentException("Invalid sequence for class " + this.getClass());
       }
     }
     //TODO
     // "The constructor saves a copy of the character array argument in the field of it's superclass"
     //Should be copying dnarr and saving it as char[] copy
-    char[] copy = Array.copyOf(dnaarr, dnaarr.length);
+    char[] copy = charrayCopy(dnaarr, 0, dnaarr.length);
   }
 
   /**
@@ -52,7 +52,7 @@ public class DNASequence extends Sequence
 
     //Thinking it might be a good idea to throw a valid letter check in for good measure
     //reverse the sequence and instead of savind the original value, it saves the compliment of the original value
-    char[] reverse =  char[seqarr.length];
+    char[] reverse =  new char[seqarr.length];
     for (int i = 0; i < seqarr.length; i++){
       reverse[i] = compliment([(seqarr.length-i-1)]);
     }
@@ -67,7 +67,7 @@ public class DNASequence extends Sequence
   public void reverseComplement()
   {
 
-    char[] temp = Arrays.copOf(getReverseCompSeq(), getReverseCompSeq().length);
+    char[] temp = charrayCopy(getReverseCompSeq(), 0, getReverseCompSeq().length);
     for (int i =0; i < seqarr.length; i++){
       seqarr[i] = temp[i];
     }
