@@ -24,11 +24,10 @@ public class GenomicDNASequence extends DNASequence
 
   public void markCoding(int first, int last)
   {
-    // TODO
     int slen = seqLength();
-    //If first or last less than 0 throws exception
+    //If first or last less than 0 throws exceptio
     if (first < 0 || last<0 || first >= slen || last >= slen ){
-      throw new new IllegalArgumentException("Coding border is out of bound");
+      throw new  IllegalArgumentException("Coding border is out of bound");
     }
     //if first greater than last, obtain coding strand by alling reverseCompliment() and transform first and last  with slen -1 -x
     if (first > last){
@@ -60,7 +59,7 @@ public class GenomicDNASequence extends DNASequence
       }
 
       //TODO find out how many instances count them and go through the array again. TA will clarify and get back to me
-      
+
       //how to throw new the illegal state exception?
       //The following code executes if i is 0 or even.
       if (i%2 == 0){

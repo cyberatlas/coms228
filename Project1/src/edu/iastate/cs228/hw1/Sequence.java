@@ -23,7 +23,7 @@ public class Sequence
   }
 
     /**
-     * This method returns the length of seqarr
+     * This method sreturns the length of seqarr
      * @return length of the sequence
      */
   public int seqLength()
@@ -41,6 +41,7 @@ public class Sequence
     for (int i= 0; i<seqarr.length; i++){
         copy[i] = seqarr[i];
     }
+    return copy;
   }
 
     /**
@@ -66,8 +67,9 @@ public class Sequence
       //Then I should check what each object contains
       if (obj!=null && obj.getClass().equals(this.getClass())){
           // TODO returns true or false, checks if the strings are equal case insensitive
-          return (this.getSeq().toString.toUpperCase()  .equals(obj.getSeq().toString.toUpperCase());
+          return (this.getSeq().toString().toUpperCase().equals(obj.toString().toUpperCase()));
       }
+      return false;
   }
 
   /**
@@ -92,7 +94,7 @@ public class Sequence
       //Makes a char array of the size end - start +1, this accounts for the start character index
       char[] newarr = new char[end-start +1];
       for(int i = start; i < end; i++){
-
+          newarr[i] = arr[i];
       }
       return newarr;
   }

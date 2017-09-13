@@ -13,7 +13,6 @@ public class DNASequence extends Sequence
    * @param dnaarr
    */
 
-
   public DNASequence(char[] dnaarr)
   {
     super(dnaarr);
@@ -54,7 +53,7 @@ public class DNASequence extends Sequence
     //reverse the sequence and instead of savind the original value, it saves the compliment of the original value
     char[] reverse =  new char[seqarr.length];
     for (int i = 0; i < seqarr.length; i++){
-      reverse[i] = compliment([(seqarr.length-i-1)]);
+      reverse[i] = compliment(seqarr[(seqarr.length-i-1)]);
     }
     return reverse;
   }

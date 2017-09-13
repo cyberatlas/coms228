@@ -40,23 +40,24 @@ public class CodingDNASequence extends DNASequence
 
   public char[] translate()
   {
-    // TODO
 
-    ArrayList<Character> protein = new ArrayList<>();
+    String protein = "";
 
-    if!(checkStartCodon()){
+    //If array does not start with a start codon, throw exception
+    if(!(checkStartCodon())){
       throw new RuntimeException("No start codon");
     }
 
     //Translating the coding sequence in seqarr to protien sequence
     //Loops through 3 at a time, creates a string out of the 3 selected characters.
-    //TODO find a a way to deal with characters that are not of a length that is a percfect facor of 3
-    //Finds the protein associated with that, adds it to the array list
-    for (int i = 0; i < seqarr.length; i+=3){
+    //Finds the protein associated with that, adds it to the proetein string
+    for (int i = 0, j =0; i < seqarr.length; i+=3, j++){
       String codon = ""+ String.valueOf( seqarr[i] + seqarr[i+1] +seqarr[i+2]);
-      protein.add(getAminoAcid(codon));
+
+      if(getAminoAcid(codon) == '$'){break;}
+      protein += (getAminoAcid(codon));
     }
-    return protein.toArray();
+    return protein.toCharArray();
   }
 
 
