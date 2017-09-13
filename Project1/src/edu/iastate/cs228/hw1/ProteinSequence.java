@@ -6,6 +6,10 @@ package edu.iastate.cs228.hw1;
 
 public class ProteinSequence extends Sequence
 {
+  /**
+   *
+   * @param psarr
+   */
   public ProteinSequence(char[] psarr)
   {
     // TODO

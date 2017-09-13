@@ -8,9 +8,13 @@ public class Sequence
 {
   public char[] seqarr; // made public instead of protected for grading.
 
+    /**
+     *Takes in char array parameter, which is copied into the global seqarr variable
+     * Checks to make sure all characters are valid letters, otherwise throws IllegalArgumentException
+      * @param sarr char array to be copied
+     */
   public Sequence(char[] sarr)
   {
-    // TODO seqarr = new char[] the length - sarr.length
     seqarr = new char[sarr.length];
     for (int i= 0; i <sarr.length; i++){
 
@@ -63,10 +67,9 @@ public class Sequence
   public boolean equals(Object obj)
   { 
 
-      //can compare using the following obj1.getClass().equals(obj2.getClass())
-      //Then I should check what each object contains
+     //Makes sure the object is not null then checks if the classes of the objects are equal
       if (obj!=null && obj.getClass().equals(this.getClass())){
-          // TODO returns true or false, checks if the strings are equal case insensitive
+          // returns true or false, checks if the strings are equal case insensitive
           return (this.getSeq().toString().toUpperCase().equals(obj.toString().toUpperCase()));
       }
       return false;

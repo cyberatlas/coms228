@@ -8,10 +8,6 @@ public class DNASequence extends Sequence
 {
 
 
-  /**
-   * Should make the
-   * @param dnaarr
-   */
 
   public DNASequence(char[] dnaarr)
   {
@@ -89,7 +85,7 @@ public class DNASequence extends Sequence
       case 'g': return 'c';
       case 't': return 'a';
       //should not get to this point. Returning z proves that something is wrong
-      default: return 'z';
+      default: return '$';
     }
   }
 }
