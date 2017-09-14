@@ -13,11 +13,11 @@ public class DNASequence extends Sequence
   {
     super(dnaarr);
     //Iterate through and make sure all the characters in the array are valid
-    for (int i = 0; i < dnaarr.length; i++){
-      if (!(isValidLetter(dnaarr[i]))) {
-        throw new IllegalArgumentException("Invalid sequence for class " + this.getClass());
-      }
-    }
+//    for (int i = 0; i < dnaarr.length; i++){
+//      if (!(isValidLetter(dnaarr[i]))) {
+//        throw new IllegalArgumentException("Invalid sequence for class " + this.getClass());
+//      }
+//    }
     //TODO
     // "The constructor saves a copy of the character array argument in the field of it's superclass"
     //Should be copying dnarr and saving it as char[] copy

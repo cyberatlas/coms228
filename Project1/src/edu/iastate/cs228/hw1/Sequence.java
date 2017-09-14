@@ -96,8 +96,8 @@ public class Sequence
   public char[] charrayCopy(char[] arr, int start, int end){
       //Makes a char array of the size end - start +1, this accounts for the start character index
       char[] newarr = new char[end-start +1];
-      for(int i = start; i < end; i++){
-          newarr[i] = arr[i];
+      for(int i = start, j = 0; i < end; i++, j++){
+          newarr[j] = arr[i];
       }
       return newarr;
   }

@@ -6,7 +6,7 @@ package edu.iastate.cs228.hw1;
 
 public class GenomicDNASequence extends DNASequence
 {
-  public boolean[] iscoding; // made public instead of private for grading.
+  public boolean[] iscoding; // made public instead of private for gradsing.
 
   public GenomicDNASequence(char[] gdnaarr)
   {
@@ -68,7 +68,8 @@ public class GenomicDNASequence extends DNASequence
         //Creates a sub using the values of exonpos[i] and exonpos[i+1]
         char[] temp =  charrayCopy(seqarr, exonpos[i], exonpos[i+1]);
         //loops through that array and add those characters to the arraylist
-        for (int j = exonpos[i]; j < exonpos[i+1]; j++){
+        //TODO Fix this damn loop!
+        for (int j =0 ;  j < exonpos[i+1]-exonpos[i]; j++){
           concat += temp[j];
         }
       }

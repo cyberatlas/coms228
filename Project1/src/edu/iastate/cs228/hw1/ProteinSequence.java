@@ -1,7 +1,7 @@
 package edu.iastate.cs228.hw1;
 
-/*
- * @author
+/**
+ * @author Alexander Stevenson
 */
 
 public class ProteinSequence extends Sequence
@@ -15,16 +15,16 @@ public class ProteinSequence extends Sequence
     // TODO
     super(psarr);
 
-    for (int i =0; i < psarr.length; i++){
-      if(!(isValidLetter(psarr[i]))){
-        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
-      }
+//    for (int i =0; i < psarr.length; i++){
+//      if(!(isValidLetter(psarr[i]))){
+//        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
+//      }
       //
       //TODO I have no idea if this is right or not, I am assuming that they want the psarr to be instead of seqarr if this is true
-      seqarr[i]=psarr[i];
+//      seqarr[i]=psarr[i];
 
     }
-  }
+
 
   @Override
   public boolean isValidLetter(char aa)
