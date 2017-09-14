@@ -9,7 +9,7 @@ public class DNASequence extends Sequence
 
 
 
-  public DNASequence(char[] dnaarr)
+  public DNASequence(char[] dnaarr) throws IllegalArgumentException
   {
     super(dnaarr);
     //Iterate through and make sure all the characters in the array are valid
@@ -21,7 +21,7 @@ public class DNASequence extends Sequence
     //TODO
     // "The constructor saves a copy of the character array argument in the field of it's superclass"
     //Should be copying dnarr and saving it as char[] copy
-    char[] copy = charrayCopy(dnaarr, 0, dnaarr.length);
+    //char[] copy = charrayCopy(dnaarr, 0, dnaarr.length);
   }
 
   /**
@@ -84,7 +84,7 @@ public class DNASequence extends Sequence
       case 'c': return 'g';
       case 'g': return 'c';
       case 't': return 'a';
-      //should not get to this point. Returning z proves that something is wrong
+      //should not get to this point. Returning $ proves that something is wrong
       default: return '$';
     }
   }

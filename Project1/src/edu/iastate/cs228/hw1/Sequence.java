@@ -1,6 +1,6 @@
 package edu.iastate.cs228.hw1;
 
-/*
+/**
  * @author Alexander Stevenson
 */
 
@@ -13,7 +13,7 @@ public class Sequence
      * Checks to make sure all characters are valid letters, otherwise throws IllegalArgumentException
       * @param sarr char array to be copied
      */
-  public Sequence(char[] sarr)
+  public Sequence(char[] sarr) throws IllegalArgumentException
   {
     seqarr = new char[sarr.length];
     for (int i= 0; i <sarr.length; i++){
@@ -27,7 +27,7 @@ public class Sequence
   }
 
     /**
-     * This method sreturns the length of seqarr
+     * This method returns the length of seqarr
      * @return length of the sequence
      */
   public int seqLength()

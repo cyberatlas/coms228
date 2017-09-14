@@ -14,6 +14,7 @@ public class ProteinSequence extends Sequence
   {
     // TODO
     super(psarr);
+
     for (int i =0; i < psarr.length; i++){
       if(!(isValidLetter(psarr[i]))){
         throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());

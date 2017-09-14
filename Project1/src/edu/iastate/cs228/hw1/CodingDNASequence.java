@@ -13,12 +13,12 @@ public class CodingDNASequence extends DNASequence
   {
 
     super(cdnaarr);
-    //Loop through cdnaarr and make sure all the letters are valid
-    for(int i= 0; i < cdnaarr.length; i++){
-      if(!(isValidLetter(cdnaarr[i]))){
-        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
-      }
-    }
+//    //Loop through cdnaarr and make sure all the letters are valid
+//    for(int i= 0; i < cdnaarr.length; i++){
+//      if(!(isValidLetter(cdnaarr[i]))){
+//        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
+//      }
+//    }
     this.cdnaarr = charrayCopy(cdnaarr, 0, cdnaarr.length);
   }
 
@@ -29,15 +29,17 @@ public class CodingDNASequence extends DNASequence
   public boolean checkStartCodon()
   {
 
-    if (seqarr.length < 3){
-      return false;
-    }
-    if (!(Character.toUpperCase(seqarr[0]) == 'A' && Character.toUpperCase(seqarr[1]) == 'T' && Character.toUpperCase(seqarr[2]) == 'G')) {
+    if ((seqarr.length < 3) && !(Character.toUpperCase(seqarr[0]) == 'A' && Character.toUpperCase(seqarr[1]) == 'T' && Character.toUpperCase(seqarr[2]) == 'G')) {
       return false;
     }
     return true;
   }
 
+  /**
+   * Makes sure the start codon is the correct sequence otherwise it throws a runtime exception
+   * Loops through the
+   * @return
+   */
   public char[] translate()
   {
 
