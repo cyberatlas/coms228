@@ -1,25 +1,21 @@
 package edu.iastate.cs228.hw1;
 
-/*
- * @author
+/**
+ * @author Alexander Stevenson
 */
 
 public class CodingDNASequence extends DNASequence
 {
 
-  private char[] cdnaarr;
-
+  /**
+   *
+   * @param cdnaarr
+   */
   public CodingDNASequence(char[] cdnaarr)
   {
 
     super(cdnaarr);
-//    //Loop through cdnaarr and make sure all the letters are valid
-//    for(int i= 0; i < cdnaarr.length; i++){
-//      if(!(isValidLetter(cdnaarr[i]))){
-//        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
-//      }
-//    }
-    this.cdnaarr = charrayCopy(cdnaarr, 0, cdnaarr.length-1);
+
   }
 
   /**
@@ -36,17 +32,17 @@ public class CodingDNASequence extends DNASequence
   }
 
   /**
-   * Makes sure the start codon is the correct sequence otherwise it throws a runtime exception
-   * Loops through the
-   * @return
+   * Translates codons to amino acid char[]
+   * @throws RuntimeException if checkStartCodon fails
+   * @return char array of amino acids
    */
-  public char[] translate()
+  public char[] translate() throws RuntimeException
   {
 
     String protein = "";
 
     //If array does not start with a start codon, throw exception
-    if(!(checkStartCodon())){
+    if(!(checkStartCodon())) {
       throw new RuntimeException("No start codon");
     }
 
@@ -65,7 +61,11 @@ public class CodingDNASequence extends DNASequence
     return protein.toCharArray();
   }
 
-
+  /**
+   * Returns amino acid based on the codon passed in
+   * @param codon
+   * @return amino acid of codon
+   */
   private char getAminoAcid(String codon)
   {
     if ( codon == null ) return '$';

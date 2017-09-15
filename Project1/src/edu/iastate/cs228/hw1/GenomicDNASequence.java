@@ -1,29 +1,33 @@
 package edu.iastate.cs228.hw1;
 
-/*
+/**
  * @author Alexander Stevenson
 */
 
 public class GenomicDNASequence extends DNASequence
 {
+  /**
+   *
+   */
   public boolean[] iscoding; // made public instead of private for gradsing.
 
   public GenomicDNASequence(char[] gdnaarr)
   {
 
     super(gdnaarr);
-//    for (int i=0; i<gdnaarr.length; i++){
-//      if (!(isValidLetter(gdnaarr[i]))){
-//        throw new IllegalArgumentException("Invalid sequence letter for class edu.iastate.cs228.hw1.GeonomicDNASequence");
-//      }
-    iscoding = new boolean[seqarr.length];
-    }
+
     //Creates Boolean array with the name isCoding of the same length as gdnaarr
     //By default all indeces are false
-    
- // }
+    iscoding = new boolean[seqarr.length];
+    }
 
-  public void markCoding(int first, int last)
+
+  /**
+   * If first number greater than last, call ReverseCompliment
+   * @param first
+   * @param last
+   */
+  public void markCoding(int first, int last) throws IllegalArgumentException
 {
   int slen = seqLength();
   //If first or last less than 0 throws exceptio
@@ -39,13 +43,18 @@ public class GenomicDNASequence extends DNASequence
   //if first !> last no reverse complimentation is needed
   //set boolean array is coding to true between first and last inclusive
   for (int i =first; i <= last; i++){
-//    iscoding[i] = (i >= first && i <= last) ? true : false;
     iscoding[i] = true;
   }
   }
 
-  public char[] extractExons(int[] exonpos) {
-    // TODO
+  /**
+   *Iterates through exonpos finds the length required of the concatenated array then creates new array
+   * @param exonpos
+   * @throws IllegalArgumentException if the int array is out of bounds, has an odd number of characters, is not in orders, or non coding positions are found
+   * @return the char array of exons
+   */
+  public char[] extractExons(int[] exonpos)throws IllegalArgumentException {
+
     //concat is basically used as an Arraylist, holding
     String concat = "";
     //throws IllegalArgumentException if exonpos is 0 or odd
@@ -67,21 +76,19 @@ public class GenomicDNASequence extends DNASequence
     
     for(int i = 0; i < exonpos.length; ++i)
     {
-      //TODO find out how many instances count them and go through the array again. TA will clarify and get back to me
 
-      //how to throw new the illegal state exception?
       //The following code executes if i is 0 or even.
       if (i%2 == 0){
         //Creates a sub using the values of exonpos[i] and exonpos[i+1]
         char[] temp =  charrayCopy(seqarr, exonpos[i], Math.min(exonpos[i+1], exonpos[exonpos.length-1]));
         //loops through that array and add those characters to the arraylist
-        //TODO Fix this damn loop!
+
         for (int j =0 ;  j < exonpos[i+1]-exonpos[i]+1; j++){
           concat += temp[j];
         }
       }
     }
-    //After everything is all said and done, the Arraylist is returned as an array
+    //After everything is all said and done, the String is returned as an array
     return concat.toCharArray();
   }
 

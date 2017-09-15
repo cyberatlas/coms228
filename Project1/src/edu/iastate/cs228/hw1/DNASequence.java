@@ -1,6 +1,6 @@
 package edu.iastate.cs228.hw1;
 
-/*
+/**
  * @author Alexander Stevenson
 */
 
@@ -8,20 +8,14 @@ public class DNASequence extends Sequence
 {
 
 
-
-  public DNASequence(char[] dnaarr) throws IllegalArgumentException
+  /**
+   *
+   * @param dnaarr
+   */
+  public DNASequence(char[] dnaarr)
   {
     super(dnaarr);
-    //Iterate through and make sure all the characters in the array are valid
-//    for (int i = 0; i < dnaarr.length; i++){
-//      if (!(isValidLetter(dnaarr[i]))) {
-//        throw new IllegalArgumentException("Invalid sequence for class " + this.getClass());
-//      }
-//    }
-    //TODO
-    // "The constructor saves a copy of the character array argument in the field of it's superclass"
-    //Should be copying dnarr and saving it as char[] copy
-    //char[] copy = charrayCopy(dnaarr, 0, dnaarr.length);
+
   }
 
   /**
@@ -45,7 +39,6 @@ public class DNASequence extends Sequence
   public char[] getReverseCompSeq()
   {
 
-    //Thinking it might be a good idea to throw a valid letter check in for good measure
     //reverse the sequence and instead of savind the original value, it saves the compliment of the original value
     char[] reverse =  new char[seqarr.length];
     for (int i = 0; i < seqarr.length; i++){

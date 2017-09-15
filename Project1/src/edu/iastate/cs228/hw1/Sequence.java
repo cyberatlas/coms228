@@ -70,7 +70,8 @@ public class Sequence
      //Makes sure the object is not null then checks if the classes of the objects are equal
       if (obj!=null && obj.getClass().equals(this.getClass())){
           // returns true or false, checks if the strings are equal case insensitive
-          return (this.getSeq().toString().toUpperCase().equals(obj.toString().toUpperCase()));
+          return (obj.toString().toUpperCase().equals(this.toString().toUpperCase()));
+
       }
       return false;
   }
@@ -83,7 +84,11 @@ public class Sequence
   public boolean isValidLetter(char let)
   {
     // returns true or false depending on if the character is uppercase or lowercase
-   return Character.isLowerCase(let) || Character.isLowerCase(let);
+    if (Character.isLowerCase(let) || Character.isUpperCase(let)){
+    		return true;
+    }
+    return false;
+  
   }
 
     /**
