@@ -19,7 +19,7 @@ public class CodingDNASequence extends DNASequence
 //        throw new IllegalArgumentException("Invalid sequence letter for class" + this.getClass());
 //      }
 //    }
-    this.cdnaarr = charrayCopy(cdnaarr, 0, cdnaarr.length);
+    this.cdnaarr = charrayCopy(cdnaarr, 0, cdnaarr.length-1);
   }
 
   /**
@@ -53,11 +53,14 @@ public class CodingDNASequence extends DNASequence
     //Translating the coding sequence in seqarr to protien sequence
     //Loops through 3 at a time, creates a string out of the 3 selected characters.
     //Finds the protein associated with that, adds it to the proetein string
-    for (int i = 0, j =0; i < seqarr.length; i+=3, j++){
-      String codon = ""+ String.valueOf( seqarr[i] + seqarr[i+1] +seqarr[i+2]);
+    for (int i = 0; i < seqarr.length; i+=3){
+      String codon = ""+ seqarr[i] + seqarr[i+1] + seqarr[i+2];
 
-      if(getAminoAcid(codon) == '$'){break;}
+      if(getAminoAcid(codon) != '$'){
       protein += (getAminoAcid(codon));
+      }
+      if(getAminoAcid(codon) == '$' || protein.length() == seqarr.length/3) {break;}
+      
     }
     return protein.toCharArray();
   }

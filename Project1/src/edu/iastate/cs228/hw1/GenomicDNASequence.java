@@ -32,9 +32,9 @@ public class GenomicDNASequence extends DNASequence
   }
   //if first greater than last, obtain coding strand by alling reverseCompliment() and transform first and last  with slen -1 -x
   if (first > last){
+	reverseComplement();
     first = (slen-1-first);
     last = (slen-1-last);
-    reverseComplement();
   }
   //if first !> last no reverse complimentation is needed
   //set boolean array is coding to true between first and last inclusive
@@ -56,20 +56,27 @@ public class GenomicDNASequence extends DNASequence
       if (exonpos[i]<0 || exonpos[i] >= seqLength()){
         throw new IllegalArgumentException("Exon position is out of bound");
       }
-      if (i != exonpos.length && exonpos[i] > exonpos[i+1]){
+      if (exonpos[i] > exonpos[Math.min(exonpos.length-1,i + 1)]){
         throw new IllegalArgumentException("Exon positions are not in order");
       }
-
+      if(iscoding[exonpos[i]] == false)
+      {
+    	  	throw new IllegalArgumentException("Noncoding position is found");
+      }
+    }
+    
+    for(int i = 0; i < exonpos.length; ++i)
+    {
       //TODO find out how many instances count them and go through the array again. TA will clarify and get back to me
 
       //how to throw new the illegal state exception?
       //The following code executes if i is 0 or even.
       if (i%2 == 0){
         //Creates a sub using the values of exonpos[i] and exonpos[i+1]
-        char[] temp =  charrayCopy(seqarr, exonpos[i], exonpos[i+1]);
+        char[] temp =  charrayCopy(seqarr, exonpos[i], Math.min(exonpos[i+1], exonpos[exonpos.length-1]));
         //loops through that array and add those characters to the arraylist
         //TODO Fix this damn loop!
-        for (int j =0 ;  j < exonpos[i+1]-exonpos[i]; j++){
+        for (int j =0 ;  j < exonpos[i+1]-exonpos[i]+1; j++){
           concat += temp[j];
         }
       }
