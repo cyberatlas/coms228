@@ -114,7 +114,8 @@ public class PolarAngleComparator implements Comparator<Point>
      */
     private int dotProduct(Point p1, Point p2)
     {
-    	// TODO 
-    	return 0; 
+    	// TODO
+    	//Says not to use trig functions in the dot product. This is the other equation provided in the handout.
+    	return p1.getX()*p2.getX() + p1.getY()*p2.getY(); 
     }
 }
