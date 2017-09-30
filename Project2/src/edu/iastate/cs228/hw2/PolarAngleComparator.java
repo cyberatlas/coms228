@@ -12,7 +12,7 @@ import java.util.Comparator;
  * 
  * This class compares two points p1 and p2 by polar angle with respect to a reference point.  
  * It is known that the reference point is not above either p1 or p2, and in the case that
- * either or both of p1 and p2 have the same y-coordinate, not to their right. 
+ * either or both of p1 and p2 have the same y-coordinate, not to their right.
  *
  */
 public class PolarAngleComparator implements Comparator<Point>
@@ -100,10 +100,14 @@ public class PolarAngleComparator implements Comparator<Point>
      * @param p2
      * @return cross product of two vectors p1 - referencePoint and p2 - referencePoint
      */
+    //TODO
+
     private int crossProduct(Point p1, Point p2)
     {
-    	// TODO 
-    	return 0; 
+    	//Finds the difference between p1 and referencePoint
+		Point p1diff = new Point();
+		//cross product formula:  x1y2-x2y1 
+    	return p1.getX()*p2.getY() - p2.getX()*p1.getY() ;
     }
 
     /**
@@ -115,7 +119,7 @@ public class PolarAngleComparator implements Comparator<Point>
     private int dotProduct(Point p1, Point p2)
     {
     	// TODO
-    	//Says not to use trig functions in the dot product. This is the other equation provided in the handout.
-    	return p1.getX()*p2.getX() + p1.getY()*p2.getY(); 
+		//dot product formula: x1x1+y1y2
+    	return p1.getX()*p2.getX() + p1.getY()*p2.getY();
     }
 }
