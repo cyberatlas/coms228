@@ -100,14 +100,11 @@ public class PolarAngleComparator implements Comparator<Point>
      * @param p2
      * @return cross product of two vectors p1 - referencePoint and p2 - referencePoint
      */
-    //TODO
 
     private int crossProduct(Point p1, Point p2)
     {
-    	//Finds the difference between p1 and referencePoint
-		Point p1diff = new Point();
-		//cross product formula:  x1y2-x2y1 
-    	return p1.getX()*p2.getY() - p2.getX()*p1.getY() ;
+    	//cross product formula:  x1y2-x2y1
+    	return (p1.getX()-referencePoint.getX())*(p2.getY()-referencePoint.getY()) - (p2.getX()-referencePoint.getY())*(p1.getY()-referencePoint.getY()) ;
     }
 
     /**
@@ -118,8 +115,7 @@ public class PolarAngleComparator implements Comparator<Point>
      */
     private int dotProduct(Point p1, Point p2)
     {
-    	// TODO
 		//dot product formula: x1x1+y1y2
-    	return p1.getX()*p2.getX() + p1.getY()*p2.getY();
+    	return (p1.getX()-referencePoint.getX())*(p2.getX()-referencePoint.getX() )+ (p1.getY()- referencePoint.getY())*(p2.getY()-referencePoint.getY());
     }
 }
