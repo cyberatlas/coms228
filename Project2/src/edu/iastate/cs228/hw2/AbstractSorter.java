@@ -63,7 +63,17 @@ public abstract class AbstractSorter
 	 */
 	protected AbstractSorter(Point[] pts) throws IllegalArgumentException
 	{
-		// TODO 
+		// TODO
+		if (pts.length == 0){throw new IllegalArgumentException("Not enough points in the array");}
+		for (int i =0; i < pts.length; i++){
+			if (pts[i] == null){throw new IllegalArgumentException("Null point");}
+			//Probably need to use the comapre distance method here...
+
+			//if (pts[i] < lowestPoint){lowestPoint = pts[i];}
+			points[i] = pts[i];
+
+		}
+
 	}
 
 	
@@ -169,5 +179,5 @@ public abstract class AbstractSorter
 	protected void swap(int i, int j)
 	{
 		// TODO 
-	}	
+	}
 }
