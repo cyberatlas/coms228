@@ -50,7 +50,7 @@ public class PolarAngleComparator implements Comparator<Point>
 	 */
 	public int compare(Point p1, Point p2)
 	{
-		
+
 		//If both return 0 then they are the same point
 		if (areSamePoint(p1, p2)){return 0;}
 		//If p1 and reference point are not the same point and the p2 is not the same as p1 and reference OR

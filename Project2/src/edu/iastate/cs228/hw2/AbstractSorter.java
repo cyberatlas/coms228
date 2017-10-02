@@ -2,14 +2,16 @@ package edu.iastate.cs228.hw2;
 
 /**
  *  
- * @author
+ * @author Alex Stevenson
  *
  */
 
+import java.io.File;
 import java.util.Comparator;
 import java.io.FileNotFoundException;
 import java.lang.IllegalArgumentException; 
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * 
@@ -64,14 +66,22 @@ public abstract class AbstractSorter
 	protected AbstractSorter(Point[] pts) throws IllegalArgumentException
 	{
 		// TODO
+
 		if (pts.length == 0){throw new IllegalArgumentException("Not enough points in the array");}
 		for (int i =0; i < pts.length; i++){
 			if (pts[i] == null){throw new IllegalArgumentException("Null point");}
-			//Probably need to use the comapre distance method here...
 
-			//if (pts[i] < lowestPoint){lowestPoint = pts[i];}
 			points[i] = pts[i];
 
+			//Checks if the new point is lower than the current lowest point. If so, sets it to that
+			//If there is a tie, sets the one with lowest x to the lowest poin
+			if (points[i].compareTo(lowestPoint) == -1){
+				lowestPoint = points[i];}
+			else if (points[i].compareTo(lowestPoint) == 0){
+				//If points[i] x is lower (more left) than the current lowest point x, then set lowestPoint as that point, otherwise lowest point is equal to itself
+				//TODO figure out what to do in the event of 2 points being the exact same coordinates
+				lowestPoint  = (Math.min(points[i].getX(), lowestPoint.getX()) == points[i].getX()) ? points[i] : lowestPoint;
+			}
 		}
 
 	}
@@ -88,6 +98,19 @@ public abstract class AbstractSorter
 	protected AbstractSorter(String inputFileName) throws FileNotFoundException, InputMismatchException
 	{
 		// TODO
+
+		int numInts =0;
+
+		File fileInput = new File(inputFileName);
+
+		//Is this even right?
+		if (!fileInput.exists()){throw new FileNotFoundException("File does not exist");}
+
+		Scanner scan = new Scanner(fileInput);
+		while (scan.hasNextInt()){
+			
+		}
+
 	}
 	
 
