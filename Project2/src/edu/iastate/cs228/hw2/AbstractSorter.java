@@ -99,8 +99,7 @@ public abstract class AbstractSorter
 	{
 		// TODO
 
-		int numInts =0;
-
+		int numInts =0, place =0, xvar =0, yvar =0;
 		File fileInput = new File(inputFileName);
 
 		//Is this even right?
@@ -108,8 +107,28 @@ public abstract class AbstractSorter
 
 		Scanner scan = new Scanner(fileInput);
 		while (scan.hasNextInt()){
-			
+			numInts +=1;
+
+			//If numInts is not an even number then that number is an x variable,
+			if (numInts%2 != 0){
+				xvar = scan.nextInt();
+			}
+			//If num ints is even then it takes the next int in as the yvar,
+			// then adds a new point to the array using the x and y variables
+			//Then increments the place int
+			//I do not reset the xvar or yvar variables becaause both will be redefined by the time they hit the point they're used again
+			if (numInts%2 ==0){
+				yvar = scan.nextInt();
+				Point p = new Point(xvar, yvar);
+				points[place] = p;
+				lowestPoint  = (Math.min(points[place].getX(), lowestPoint.getX()) == points[place].getX()) ? points[place] : lowestPoint;
+				place ++;
+			}
 		}
+		//If not an even number, that means there was not an even number of ints
+		if (numInts %2 !=0){throw new InputMismatchException("Not valid number of arguments");}
+
+		//TODO figure out how to crate the output file
 
 	}
 	
@@ -147,7 +166,7 @@ public abstract class AbstractSorter
 	 */
 	public String stats()
 	{
-		return null; 
+		return null; 	
 		// TODO 
 	}
 	
@@ -160,6 +179,10 @@ public abstract class AbstractSorter
 	@Override
 	public String toString()
 	{
+		String pointString = new
+		for (int i = 0; i < points.length(); i++;){
+			if
+		}
 		return null; 
 		// TODO
 	}
