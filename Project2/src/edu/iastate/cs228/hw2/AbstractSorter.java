@@ -166,7 +166,7 @@ public abstract class AbstractSorter
 	 */
 	public String stats()
 	{
-		return null; 	
+		return null;
 		// TODO 
 	}
 	
@@ -179,12 +179,12 @@ public abstract class AbstractSorter
 	@Override
 	public String toString()
 	{
-		String pointString = new
-		for (int i = 0; i < points.length(); i++;){
-			if
+		String pointString = new String("");
+		for (int i = 0; i < points.length; i++){
+			pointString += points[i].toString()+"/n";
 		}
-		return null; 
-		// TODO
+		return pointString;
+
 	}
 
 	
@@ -212,8 +212,34 @@ public abstract class AbstractSorter
 	 */
 	protected void setComparator(int order) 
 	{
-		// TODO 
-	}
+		// TODO
+		//dummy point used to instantiate PolarAngleComparator
+		Point p1 = new Point();
+		PolarAngleComparator p = new PolarAngleComparator(Point p1);
+
+
+			//pointComparator for angles
+			Comparator <Point> ann = new Comparator<Point>{
+				@Override
+				public int compare(Point x, Point y)
+				{
+
+					if (sortByAngle){
+
+
+					}
+				return 0;
+				}
+
+		};
+
+
+
+		else {
+			//spoint comparator for coordinates
+		}
+
+}
 
 	
 	/**
@@ -224,6 +250,8 @@ public abstract class AbstractSorter
 	 */
 	protected void swap(int i, int j)
 	{
-		// TODO 
+		Point temp = points[j];
+		points[j] = points [i];
+		points[i] = temp;
 	}
 }

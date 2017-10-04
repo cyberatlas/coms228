@@ -27,7 +27,11 @@ public class PolarAngleComparator implements Comparator<Point>
 	{
 		referencePoint = p; 
 	}
-	
+
+	public PolarAngleComparator() {
+
+	}
+
 	/**
 	 * Use cross product and dot product to implement this method.  Do not take square roots 
 	 * or use trigonometric functions. See the PowerPoint notes on how to carry out cross and 
