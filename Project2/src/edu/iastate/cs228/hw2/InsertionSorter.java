@@ -7,7 +7,8 @@ import java.lang.IllegalArgumentException;
 
 /**
  *  
- * @author
+ * @author Alexander Stevenson
+ *
  *
  */
 
@@ -33,18 +34,21 @@ public class InsertionSorter extends AbstractSorter
 	 */
 	public InsertionSorter(Point[] pts) 
 	{
-		// TODO 
+		super (pts);
+		outputFileName= "insert.txt";
+		algorithm = "insertion sort";
 	}	
 
 	
 	/**
 	 * Constructor reads points from a file. 
 	 * 
-	 * @param inputFileName  name of the input file
+	 * @param inputFileName compare name of the input file
 	 */
-	public InsertionSorter(String inputFileName) 
-	{
-		// TODO 
+	public InsertionSorter(String inputFileName) throws FileNotFoundException {
+		super (inputFileName);
+		outputFileName= "insert.txt";
+		algorithm = "insertion sort";
 	}
 	
 	

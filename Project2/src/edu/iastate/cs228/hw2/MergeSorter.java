@@ -33,7 +33,8 @@ public class MergeSorter extends AbstractSorter
 	 */
 	public MergeSorter(Point[] pts) 
 	{
-		// TODO  
+		// TODO
+
 	}
 	
 	
@@ -71,6 +72,7 @@ public class MergeSorter extends AbstractSorter
 	 */
 	private void mergeSortRec(Point[] pts)
 	{
+
 		
 	}
 

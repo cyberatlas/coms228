@@ -43,7 +43,7 @@ public class PolarAngleComparator implements Comparator<Point>
 	 * @param p2
 	 * @return  0 if p1 and p2 are the same point
 	 *         -1 otherwise, if one of the following three conditions holds: 
-	 *                a) p1 and referencePoint are the same point (hence p2 is a different point); 
+	 *                a) p1 and referencePoint are the same poiordernt (hence p2 is a different point);
 	 *                b) neither p1 nor p2 equals referencePoint, and the polar angle of 
 	 *                   p1 with respect to referencePoint is less than that of p2; 
 	 *                c) neither p1 nor p2 equals referencePoint, p1 and p2 have the same polar 

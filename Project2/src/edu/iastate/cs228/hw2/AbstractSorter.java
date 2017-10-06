@@ -6,10 +6,9 @@ package edu.iastate.cs228.hw2;
  *
  */
 
-import java.io.File;
+import java.io.*;
 import java.util.Comparator;
-import java.io.FileNotFoundException;
-import java.lang.IllegalArgumentException; 
+import java.lang.IllegalArgumentException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -65,7 +64,6 @@ public abstract class AbstractSorter
 	 */
 	protected AbstractSorter(Point[] pts) throws IllegalArgumentException
 	{
-		// TODO
 
 		if (pts.length == 0){throw new IllegalArgumentException("Not enough points in the array");}
 		for (int i =0; i < pts.length; i++){
@@ -79,7 +77,7 @@ public abstract class AbstractSorter
 				lowestPoint = points[i];}
 			else if (points[i].compareTo(lowestPoint) == 0){
 				//If points[i] x is lower (more left) than the current lowest point x, then set lowestPoint as that point, otherwise lowest point is equal to itself
-				//TODO figure out what to do in the event of 2 points being the exact same coordinates
+
 				lowestPoint  = (Math.min(points[i].getX(), lowestPoint.getX()) == points[i].getX()) ? points[i] : lowestPoint;
 			}
 		}
@@ -128,7 +126,9 @@ public abstract class AbstractSorter
 		//If not an even number, that means there was not an even number of ints
 		if (numInts %2 !=0){throw new InputMismatchException("Not valid number of arguments");}
 
-		//TODO figure out how to crate the output file
+
+
+
 
 	}
 	
@@ -146,7 +146,7 @@ public abstract class AbstractSorter
 	 * (Assign the time to the variable sortingTime.)  
 	 * 
 	 * @param order  1   by x-coordinate 
-	 * 			     2   by polar angle w.r.t lowestPoint 
+	 * 			     2   by polar angle w.r.t lowestPoint
 	 *
 	 * @throws IllegalArgumentException if order is less than 1 or greater than 2
 	 */
@@ -160,14 +160,20 @@ public abstract class AbstractSorter
 	 * 
 	 * For instance, 
 	 * 
-	 * selection sort   1000	  9200867
+	 * selection sort   1000	  9200867utp
 	 * 
 	 * Use the spacing in the sample run in Section 2 of the assignment description. 
 	 */
 	public String stats()
 	{
-		return null;
-		// TODO 
+		//In the doc there is 20 spaces for the algorithm
+		String stats  =  String.format("%" + -20 + "s" ,algorithm);
+		//In the doc there is 12 spaces for the size
+		stats += String.format("% " +-12+ "s", points.length);
+		//size is just added to the end
+		stats += " " + sortingTime;
+		return stats;
+
 	}
 	
 	
@@ -196,50 +202,58 @@ public abstract class AbstractSorter
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	public void writePointsToFile() throws FileNotFoundException
-	{
-		// TODO 
-	}	
-
-	
-	/**
-	 * Generates a comparator on the fly that compares by polar angle if sortByAngle == true
-	 * and by x-coordinate if sortByAngle == false. Set the protected variable pointComparator
-	 * to it. Need to create an object of the PolarAngleComparator class and call the compareTo() 
-	 * method in the Point class, respectively for the two possible values of sortByAngle.  
-	 * 
-	 * @param order
-	 */
-	protected void setComparator(int order) 
-	{
+	public void writePointsToFile() throws IOException {
 		// TODO
-		//dummy point used to instantiate PolarAngleComparator
-		Point p1 = new Point();
-		PolarAngleComparator p = new PolarAngleComparator(Point p1);
-
-
-			//pointComparator for angles
-			Comparator <Point> ann = new Comparator<Point>{
-				@Override
-				public int compare(Point x, Point y)
-				{
-
-					if (sortByAngle){
-
-
-					}
-				return 0;
-				}
-
-		};
-
-
-
-		else {
-			//spoint comparator for coordinates
+		//cerate new file with output file name
+		FileWriter write = new FileWriter(outputFileName);
+		File out = new File(outputFileName);
+		if (!(out.exists())) {
+			throw new FileNotFoundException("Output file oes not exist");
 		}
 
-}
+		FileWriter fileWriter = new FileWriter(outputFileName);
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+		printWriter.print("Some String");
+		printWriter.printf("Product name is %s and its price is %d $", "iPhone", 1000);
+		printWriter.close();
+	}
+
+		/**
+		 * Generates a comparator on the fly that compares by polar angle if sortByAngle == true
+		 * and by x-coordinate if sortByAngle == false. Set the protected variable pointComparator
+		 * to it. Need to create an object of the PolarAngleComparator class and call the compareTo()
+		 * method in the Point class, respectively for the two possible values of sortByAngle.
+		 *
+		 */
+		protected void setComparator ()
+		{
+
+
+			//sort by angle true ==> s
+			if (sortByAngle) {
+				pointComparator = new PolarAngleComparator(lowestPoint);
+			}
+			if (!sortByAngle) {
+
+				pointComparator = new Comparator<Point>() {
+					@Override
+					public int compare(Point point1, Point point2) {
+						return point1.compareTo(point2);
+					}
+				};
+			}
+
+
+		}
+
+
+
+
+
+
+
+
+
 
 	
 	/**

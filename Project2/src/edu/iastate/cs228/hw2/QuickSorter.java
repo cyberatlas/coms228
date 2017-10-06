@@ -7,7 +7,7 @@ import java.lang.IllegalArgumentException;
 
 /**
  *  
- * @author
+ * @author Alexander Stevenson
  *
  */
 
@@ -34,7 +34,10 @@ public class QuickSorter extends AbstractSorter
 	 */
 	public QuickSorter(Point[] pts)
 	{
-		// TODO 
+		super (pts);
+		outputFileName= "quick.txt";
+		algorithm = "selection sort";
+
 	}
 		
 
@@ -43,9 +46,11 @@ public class QuickSorter extends AbstractSorter
 	 * 
 	 * @param inputFileName  name of the input file
 	 */
-	public QuickSorter(String inputFileName) 
-	{
-		// TODO 
+	public QuickSorter(String inputFileName) throws FileNotFoundException {
+
+		super (inputFileName);
+		outputFileName = "quick.txt";
+		algorithm = "selection sort";
 	}
 
 
