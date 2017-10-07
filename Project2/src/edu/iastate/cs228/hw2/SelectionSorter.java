@@ -42,7 +42,7 @@ public class SelectionSorter extends AbstractSorter {
      * @param inputFileName  name of the input file
      */
     public SelectionSorter(String inputFileName) throws FileNotFoundException {
-        // TODO
+
         super(inputFileName);
         algorithm = "selection sort";
         outputFileName = "select.txt";

@@ -76,7 +76,7 @@ public class QuickSorter extends AbstractSorter {
         
     		int last = points.length-1; 
 		
-		//Does QuickSort
+	
 		quickSortRec(0,last);
 		
         sortingTime = System.nanoTime() - time;
@@ -91,7 +91,7 @@ public class QuickSorter extends AbstractSorter {
      * @param last   ending index of the subarray
      */
     private void quickSortRec(int first, int last) {
-        // TODO
+ 
     	
     	
     	if(first >= last){ 
@@ -111,8 +111,7 @@ public class QuickSorter extends AbstractSorter {
      * @return
      */
     private int partition(int first, int last) {
-        // TODO
-    	//Uses last element as pivot
+        
     			Point pivot = points[last];
     			int i = first-1;
     			for(int j=first;j<last;j++){

@@ -1,7 +1,7 @@
 package edu.iastate.cs228.hw2;
 
 /**
- * Created by ruski on 9/30/17.
+ *@author Alexander Stevenson
  */
 public class Tester {
 

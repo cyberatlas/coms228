@@ -67,20 +67,7 @@ public abstract class AbstractSorter {
         lowestPoint = pts[0];
         
         for (int i = 0; i < pts.length; i++) {
-//            if (pts[i] == null) {
-//                throw new IllegalArgumentException("Null point");
-//            }
-//        
-//
-//
-//            //Checks if the new point is lower than the current lowest point. If so, sets it to that
-//            //If there is a tie, sets the one with lowest x to the lowest poin
-//            if (pts[i].compareTo(lowestPoint) == -1) {
-//                lowestPoint = pts[i];
-//            } else if (pts[i].compareTo(lowestPoint) == 0) {
-//                //If points[i] x is lower (more left) than the current lowest point x, then set lowestPoint as that point, otherwise lowest point is equal to itself
-//
-//                lowestPoint = (Math.min(pts[i].getX(), lowestPoint.getX()) == pts[i].getX()) ? pts[i] : lowestPoint;
+
                 if(lowestPoint.getY() == pts[i].getY() && lowestPoint.getX() > pts[i].getX() || lowestPoint.getY() > pts[i].getY())
                 {
                 		lowestPoint = pts[i];
@@ -106,7 +93,7 @@ public abstract class AbstractSorter {
         int numInts = 0, place = 0, xvar = 0, yvar = 0;
         File fileInput = new File(inputFileName);
 
-        //Is this even right?
+       
         if (!fileInput.exists()) {
             throw new FileNotFoundException("File does not exist");
         }
@@ -130,6 +117,7 @@ public abstract class AbstractSorter {
                 lowestPoint = (Math.min(points[place].getX(), lowestPoint.getX()) == points[place].getX()) ? points[place] : lowestPoint;
                 place++;
             }
+            scan.close();
         }
         //If not an even number, that means there was not an even number of ints
         if (numInts % 2 != 0) {
