@@ -51,7 +51,7 @@ public class CompareSorters {
 
     }
 
-
+    
     /**
      * This method generates a given number of random points to initialize randomPoints[].
      * The coordinates of these points are pseudo-random numbers within the range
@@ -64,7 +64,17 @@ public class CompareSorters {
      * @throws IllegalArgumentException if numPts < 1
      */
     public static Point[] generateRandomPoints(int numPts, Random rand) throws IllegalArgumentException {
-        return null;
-        // TODO
+        
+        
+        if (numPts < 1) {
+        		throw new IllegalArgumentException("Too few points");
+        }
+        Point[] randomPoints = new Point[numPts];
+        int i =0;
+        while (i< numPts) {
+        		randomPoints [i] = new Point(rand.nextInt(101)-50, rand.nextInt(101)-50);
+        		i+=1;
+        }
+        return randomPoints;
     }
 }

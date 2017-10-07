@@ -32,7 +32,7 @@ public class QuickSorter extends AbstractSorter {
     public QuickSorter(Point[] pts) {
         super(pts);
         outputFileName = "quick.txt";
-        algorithm = "selection sort";
+        algorithm = "quick sort";
 
     }
 
@@ -46,7 +46,7 @@ public class QuickSorter extends AbstractSorter {
 
         super(inputFileName);
         outputFileName = "quick.txt";
-        algorithm = "selection sort";
+        algorithm = "quick sort";
     }
 
 
@@ -59,7 +59,28 @@ public class QuickSorter extends AbstractSorter {
      */
     @Override
     public void sort(int order) {
-        // TODO
+        
+    	long time = System.nanoTime();
+
+        if (order == 1) {
+            sortByAngle = false;
+            setComparator();
+        }
+        if (order == 2) {
+            sortByAngle = true;
+            setComparator();
+        }
+        if (order != 1 && order != 2) {
+            throw new IllegalArgumentException("Invalid range for order");
+        }
+        
+    		int last = points.length-1; 
+		
+		//Does QuickSort
+		quickSortRec(0,last);
+		
+        sortingTime = System.nanoTime() - time;
+
     }
 
 
@@ -71,6 +92,14 @@ public class QuickSorter extends AbstractSorter {
      */
     private void quickSortRec(int first, int last) {
         // TODO
+    	
+    	
+    	if(first >= last){ 
+			return;
+		}
+		int part = partition(first, last);
+		quickSortRec(first,part-1);
+		quickSortRec(part+1,last);
     }
 
 
@@ -83,9 +112,19 @@ public class QuickSorter extends AbstractSorter {
      */
     private int partition(int first, int last) {
         // TODO
-        return 0;
+    	//Uses last element as pivot
+    			Point pivot = points[last];
+    			int i = first-1;
+    			for(int j=first;j<last;j++){
+    				if(pointComparator.compare(points[j], pivot) <0){ 
+    					i=i+1;
+    					swap(i,j); 
+    				}
+    			}
+    			swap(i+1,last);
+    			return i+1; 
     }
 
 
-    // Other private methods in case you need ...
+    
 }
