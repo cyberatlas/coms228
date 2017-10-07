@@ -60,26 +60,34 @@ public abstract class AbstractSorter {
      */
     protected AbstractSorter(Point[] pts) throws IllegalArgumentException {
 
-        if (pts.length == 0) {
+        if (pts.length == 0 || pts == null) {
             throw new IllegalArgumentException("Not enough points in the array");
         }
+        
+        lowestPoint = pts[0];
+        
         for (int i = 0; i < pts.length; i++) {
-            if (pts[i] == null) {
-                throw new IllegalArgumentException("Null point");
-            }
-
-            points[i] = pts[i];
-
-            //Checks if the new point is lower than the current lowest point. If so, sets it to that
-            //If there is a tie, sets the one with lowest x to the lowest poin
-            if (points[i].compareTo(lowestPoint) == -1) {
-                lowestPoint = points[i];
-            } else if (points[i].compareTo(lowestPoint) == 0) {
-                //If points[i] x is lower (more left) than the current lowest point x, then set lowestPoint as that point, otherwise lowest point is equal to itself
-
-                lowestPoint = (Math.min(points[i].getX(), lowestPoint.getX()) == points[i].getX()) ? points[i] : lowestPoint;
-            }
+//            if (pts[i] == null) {
+//                throw new IllegalArgumentException("Null point");
+//            }
+//        
+//
+//
+//            //Checks if the new point is lower than the current lowest point. If so, sets it to that
+//            //If there is a tie, sets the one with lowest x to the lowest poin
+//            if (pts[i].compareTo(lowestPoint) == -1) {
+//                lowestPoint = pts[i];
+//            } else if (pts[i].compareTo(lowestPoint) == 0) {
+//                //If points[i] x is lower (more left) than the current lowest point x, then set lowestPoint as that point, otherwise lowest point is equal to itself
+//
+//                lowestPoint = (Math.min(pts[i].getX(), lowestPoint.getX()) == pts[i].getX()) ? pts[i] : lowestPoint;
+                if(lowestPoint.getY() == pts[i].getY() && lowestPoint.getX() > pts[i].getX() || lowestPoint.getY() > pts[i].getY())
+                {
+                		lowestPoint = pts[i];
+                }
+            
         }
+        points = pts.clone();
 
     }
 
@@ -184,7 +192,7 @@ public abstract class AbstractSorter {
     public String toString() {
         String pointString = new String("");
         for (int i = 0; i < points.length; i++) {
-            pointString += points[i].toString() + "/n";
+            pointString += points[i].toString() + "\n";
         }
         return pointString;
 

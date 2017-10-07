@@ -39,7 +39,7 @@ public class PolarAngleComparator implements Comparator<Point> {
      * @param p2
      * @return 0 if p1 and p2 are the same point
      *         -1 otherwise, if one of the following three conditions holds:
-     *                a) p1 and referencePoint are the same poiordernt (hence p2 is a different point);
+     *                a) p1 and referencePoint are the same point (hence p2 is a different point);
      *                b) neither p1 nor p2 equals referencePoint, and the polar angle of
      *                   p1 with respect to referencePoint is less than that of p2;
      *                c) neither p1 nor p2 equals referencePoint, p1 and p2 have the same polar
@@ -57,7 +57,7 @@ public class PolarAngleComparator implements Comparator<Point> {
         //If p1 and reference point are not the same point and the p2 is not the same as p1 and reference OR
         //If p1 and p2 don't equal reference point AND the polar angle of p1 is less than p2 OR
         //Neither p1 nor p2 equal reference point AND  p1 and p2 have the same polar angle AND p1 is closer to the reference point than p2
-        else if ((areSamePoint(p1, referencePoint) && !areSamePoint(p2, referencePoint)) ||
+        else if (areSamePoint(p1, referencePoint) ||
 
                 (!areSamePoint(p1, referencePoint) && !areSamePoint(p2, referencePoint) && comparePolarAngle(p1, p2) == -1) ||
 
@@ -65,8 +65,8 @@ public class PolarAngleComparator implements Comparator<Point> {
                 ) {
             return -1;
         }
-        //If neither of the above conditions are true, returns 0
-        return 0;
+        //If neither of the above conditions are true, returns 1
+        return 1;
     }
 
 
@@ -86,19 +86,19 @@ public class PolarAngleComparator implements Comparator<Point> {
     public int comparePolarAngle(Point p1, Point p2) {
 
         //Creates a new point that is point 1 distance away from the reference point
-        Point p1dis = new Point(p1.getX() - referencePoint.getX(), p1.getY() - referencePoint.getY());
-
-        //Creates a new point that is point 2 distance away from reference point
-        Point p2dis = new Point(p2.getX() - referencePoint.getX(), p2.getY() - referencePoint.getY());
+//        Point p1dis = new Point(p1.getX() - referencePoint.getX(), p1.getY() - referencePoint.getY());
+//
+//        //Creates a new point that is point 2 distance away from reference point
+//        Point p2dis = new Point(p2.getX() - referencePoint.getX(), p2.getY() - referencePoint.getY());
 
 
         //if  greater than 0 ==> p1 is less than p2
-        if (crossProduct(p1, p2) > 0) {
-            return -1;
-        } else if (crossProduct(p1, p2) < 0) {
-            return 1;
-        } else {
+        if (crossProduct(p1, p2) == 0) {
             return 0;
+        } if (p1.equals(referencePoint) || crossProduct(p1, p2) > 0) {
+            return -1;
+        } else {
+            return 1;
         }
 
     }

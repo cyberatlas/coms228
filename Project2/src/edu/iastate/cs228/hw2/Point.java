@@ -54,7 +54,7 @@ public class Point implements Comparable<Point> {
     public int compareTo(Point q) {
         if (this.x < q.x || (this.x == q.x && this.y < q.y)) {
             return -1;
-        } else if (this.x == q.x && this.y == q.y) {
+        } else if (this.x== q.x&& this.y == q.y) {
             return 0;
         } else return 1;
 
@@ -67,6 +67,6 @@ public class Point implements Comparable<Point> {
     @Override
     public String toString() {
 
-        return "(" + x + ", " + y + ")";
+        return "(" + this.x + ", " + this.y + ")";
     }
 }

@@ -56,5 +56,76 @@ public class InsertionSorter extends AbstractSorter {
     @Override
     public void sort(int order) {
         // TODO
+    	long time = System.nanoTime();
+
+        if (order == 1) {
+            sortByAngle = false;
+            setComparator();
+        }
+        if (order == 2) {
+            sortByAngle = true;
+            setComparator();
+        }
+        if (order != 1 && order != 2) {
+            throw new IllegalArgumentException("Invalid range for order");
+        }
+
+    	for (int i = 1; i < points.length; i++) {
+            for(int j = i ; j > 0 ; j--){
+            	if (pointComparator.compare(points[j], points[j-1]) < 0) {                 
+                   swap(j, j-1);
+                }
+            }
+        }
+        sortingTime = System.nanoTime() - time;
     }
 }
+
+
+
+//
+//
+//
+//int partition(int low, int high)
+//{
+//    int pivot =points[high]; 
+//    int i = (low-1); // index of smaller element
+//    for (int j=low; j<high; j++)
+//    {
+//        // If current element is smaller than or
+//        // equal to pivot
+//        if (arr[j] <= pivot)
+//        {
+//            i++;
+//
+//            // swap arr[i] and arr[j]
+//            int temp = arr[i];
+//            arr[i] = arr[j];
+//            arr[j] = temp;
+//        }
+//    }
+//
+//    // swap arr[i+1] and arr[high] (or pivot)
+//    swap(i+1, high);
+//    
+//    return i+1;
+//}
+//
+//
+///* The main function that implements QuickSort()
+//  arr[] --> Array to be sorted,
+//  low  --> Starting index,
+//  high  --> Ending index */
+//void sort(int arr[], int low, int high)
+//{
+//    if (low < high)
+//    {
+//        /* pi is partitioning index, arr[pi] is 
+//          now at right place */
+//        int pi = partition(arr, low, high);
+//
+//        // Recursively sort elements before
+//        // partition and after partition
+//        sort(arr, low, pi-1);
+//        sort(arr, pi+1, high);
+//    }
