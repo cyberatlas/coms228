@@ -100,6 +100,13 @@ public class AdaptiveList<E> implements List<E>
     if ( ! linkedUTD )
       throw new RuntimeException("linkedUTD is false");
     // TODO
+
+    theArray = (E[]) new Object [numItems];
+    AdaptiveListIterator l = new AdaptiveListIterator();
+    int arrayCounter = 0;
+    while (){}
+
+
   }
 
   private void updateLinked() // makes the linked list up-to-date.
@@ -119,6 +126,7 @@ public class AdaptiveList<E> implements List<E>
   public int size()
   {
     // TODO
+    
     return -1; // may need to be revised.
   }
 
@@ -126,6 +134,7 @@ public class AdaptiveList<E> implements List<E>
   public boolean isEmpty()
   {
     // TODO
+
     return true; // may need to be revised.
   }
 
@@ -317,8 +326,11 @@ public class AdaptiveList<E> implements List<E>
     @Override
     public E next()
     {
-      // TODO
-      return null; // may need to be revised.
+      //Sets the previous node to the next, sets the next node to the one after.
+      //Returns the next's data
+      cur.prev = cur.link;
+      cur.link = cur.link.link;
+      return cur.prev.data; // may need to be revised.
     } 
 
     @Override
