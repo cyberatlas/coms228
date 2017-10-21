@@ -6,6 +6,7 @@ package edu.iastate.cs228.hw3;
  *
  */
 
+import javax.xml.soap.Node;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -13,21 +14,22 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+
 public class AdaptiveList<E> implements List<E>
 {
-  public class ListNode // private member of outer class
-  {                     
-    public E data;        // public members:
-    public ListNode link; // used outside the inner class
-    public ListNode prev; // used outside the inner class
-    
+    public class ListNode{ // private member of outer class
+
+      public E data;        // public members:
+      public ListNode link; // used outside the inner class
+      public ListNode prev; // used outside the inner class
+
     public ListNode(E item)
     {
       data = item;
       link = prev = null;
     }
   }
-  
+
   public ListNode head;  // dummy node made public for testing.
   public ListNode tail;  // dummy node made public for testing.
   private int numItems;  // number of data items
@@ -99,13 +101,15 @@ public class AdaptiveList<E> implements List<E>
       throw new RuntimeException("numItems is negative: " + numItems);
     if ( ! linkedUTD )
       throw new RuntimeException("linkedUTD is false");
-    // TODO
 
     theArray = (E[]) new Object [numItems];
     AdaptiveListIterator l = new AdaptiveListIterator();
     int arrayCounter = 0;
-    while (){}
-
+    while (l.hasNext()){
+      theArray [arrayCounter] = l.next();
+      arrayCounter ++;
+    }
+    arrayUTD = true;
 
   }
 
@@ -120,14 +124,27 @@ public class AdaptiveList<E> implements List<E>
       throw new RuntimeException("theArray is null or shorter");
 
     // TODO
+
+    head.link = tail;
+    tail.prev = head;
+    for (int i =0; i<numItems; i++){}
+
+
   }
 
   @Override
   public int size()
   {
     // TODO
-    
-    return -1; // may need to be revised.
+    int count = 0;
+    ListNode n = head;
+    while (n.link != tail){
+      count++;
+      n = n.link;
+    }
+
+
+    return count; // may need to be revised.
   }
 
   @Override
@@ -142,6 +159,8 @@ public class AdaptiveList<E> implements List<E>
   public boolean add(E obj)
   {
     // TODO
+    ListNode n = (ListNode) obj;
+    n.prev
     return true; // may need to be revised.
   }
 
@@ -216,7 +235,12 @@ public class AdaptiveList<E> implements List<E>
   public E get(int pos)
   {
     // TODO
-    return null; // may need to be revised.
+
+    ListNode n = head;
+    for (int i =0; i< pos; i++){
+      n = n.link;
+    }
+    return n.value(); // may need to be revised.
   }
 
   @Override
@@ -224,7 +248,7 @@ public class AdaptiveList<E> implements List<E>
   {
     // TODO
     return null; // may need to be revised.
-  } 
+  }
 
   // If the number of elements is at most 1, the method returns false.
   // Otherwise, it reverses the order of the elements in the array
@@ -243,6 +267,11 @@ public class AdaptiveList<E> implements List<E>
    return true; // may need to be revised.
   }
 
+  /**
+   * True if this list contains all the specified elements
+   * @param c collection to be checked
+   * @return true if if list contains all specified elemetns
+   */
   @Override
   public boolean containsAll(Collection< ? > c)
   {
@@ -279,13 +308,23 @@ public class AdaptiveList<E> implements List<E>
     return true; // may need to be revised.
   }
 
+  /**
+   *
+   * @return instance of array
+   */
   @Override
   public Object[] toArray()
   {
-    // TODO
-    return null; // may need to be revised.
+    if(theArray == null){return null;}
+
+    E[] temp = (E[]) new Object[numItems];
+    for (int i=0; i < numItems; i++){
+      temp[i] = theArray[i];
+    }
+
+    return temp; // may need to be revised.
   }
-  
+
   @Override
   public <T> T[] toArray(T[] arr)
   {
@@ -331,7 +370,7 @@ public class AdaptiveList<E> implements List<E>
       cur.prev = cur.link;
       cur.link = cur.link.link;
       return cur.prev.data; // may need to be revised.
-    } 
+    }
 
     @Override
     public boolean hasPrevious()
@@ -346,7 +385,7 @@ public class AdaptiveList<E> implements List<E>
       // TODO
       return null; // may need to be revised.
     }
-    
+
     @Override
     public int nextIndex()
     {
@@ -364,11 +403,16 @@ public class AdaptiveList<E> implements List<E>
     public void remove()
     {
       // TODO
+
     }
 
     public void add(E obj)
-    { 
+    {
       // TODO
+      ListNode n = new ListNode;
+      n.previous() = tail.previous();
+      n.last().next() =n;
+      n.next().last = n;
     } // add
 
     @Override
@@ -377,7 +421,7 @@ public class AdaptiveList<E> implements List<E>
       // TODO
     } // set
   } // AdaptiveListIterator
-  
+
   @Override
   public boolean equals(Object obj)
   {
@@ -492,7 +536,7 @@ public class AdaptiveList<E> implements List<E>
       }
       else
          strb.append("-");
-      
+
       cur = cur.link;
       if ( cur != tail )
          strb.append(", ");
