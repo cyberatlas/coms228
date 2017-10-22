@@ -256,20 +256,19 @@ public class AdaptiveList<E> implements List<E>
   // Note that if the array is modified, then linkedUTD needs to be set to false.
   public boolean reverse()
   {
-    // TODO
+
     if (numItems<=1){return false;}
     updateLinked();
     AdaptiveListIterator l = new AdaptiveListIterator(numItems);
     for (int i=0; i < numItems; i++){
       theArray[i] = l.previous();//gets the one before and moves the cursor
     }
-    return true; // may need to be revised.
+    return true;
   }
 
   @Override
   public boolean contains(Object obj)
   {
-    // TODO
     AdaptiveListIterator l = new AdaptiveListIterator();
     while (l.hasNext()){
       if (l.next() == obj){
@@ -287,8 +286,8 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public boolean containsAll(Collection< ? > c)
   {
-    // TODO
-    Iterator temp =  c.Iterator();
+
+    Iterator temp =  c.iterator();
     while (temp.hasNext()) {
       if (!contains(temp.next())){
         return false;
@@ -325,9 +324,8 @@ public class AdaptiveList<E> implements List<E>
   public boolean retainAll(Collection<?> c)
   {
     // TODO
-    Iterator temp = c.Iterator();
+    Iterator temp = c.iterator();
     AdaptiveListIterator l = new AdaptiveListIterator();
-    for (int i=0; i<numItems; i++){
     for (int i=0; i<numItems; i++){
       if (!c.contains(l.next())){
         l.remove();
