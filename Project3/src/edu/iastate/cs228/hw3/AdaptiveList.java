@@ -135,7 +135,6 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public int size()
   {
-    // TODO
     int count = 0;
     ListNode n = head;
     while (n.link != tail){
@@ -150,17 +149,22 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public boolean isEmpty()
   {
-    // TODO
+    // TODO Is this right?
 
-    return true; // may need to be revised.
+    if (head.link ==  tail){return true;}
+
+    return false; // may need to be revised.
   }
 
   @Override
   public boolean add(E obj)
   {
-    // TODO
     ListNode n = (ListNode) obj;
-    n.prev
+
+    n.prev = tail.prev;
+    tail.prev.link = n;
+    n.link  = tail;
+
     return true; // may need to be revised.
   }
 
@@ -174,8 +178,21 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public boolean remove(Object obj)
   {
-    // TODO
-    return true; // may need to be revised.
+    // TODO How do I get the value of the node?
+
+    //Do I even need this?
+    ListNode object = (ListNode)obj;
+    ListNode n = head;
+    //Loops through the list and checks every element if it equals the object.
+    while (n.value() != object.value()){
+      n= n.link;
+      if (n.value() == object.value()){
+        n.prev = n.prev.prev;
+        n.prev.link = n.link;
+        return true;
+      }
+    }
+    return false; // Should only tget to this point if the list does not contain the specified element
   }
 
   private void checkIndex(int pos) // a helper method
