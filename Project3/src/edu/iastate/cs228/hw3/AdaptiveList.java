@@ -257,6 +257,12 @@ public class AdaptiveList<E> implements List<E>
   public boolean reverse()
   {
     // TODO
+    if (numItems<=1){return false;}
+    updateLinked();
+    AdaptiveListIterator l = new AdaptiveListIterator(numItems);
+    for (int i=0; i < numItems; i++){
+      theArray[i] = l.previous();//gets the one before and moves the cursor
+    }
     return true; // may need to be revised.
   }
 
@@ -264,7 +270,13 @@ public class AdaptiveList<E> implements List<E>
   public boolean contains(Object obj)
   {
     // TODO
-   return true; // may need to be revised.
+    AdaptiveListIterator l = new AdaptiveListIterator();
+    while (l.hasNext()){
+      if (l.next() == obj){
+        return true;
+      }
+    }
+   return false;
   }
 
   /**
@@ -276,7 +288,15 @@ public class AdaptiveList<E> implements List<E>
   public boolean containsAll(Collection< ? > c)
   {
     // TODO
-   return true; // may need to be revised.
+    Iterator temp =  c.Iterator();
+    while (temp.hasNext()) {
+      if (!contains(temp.next())){
+        return false;
+      }
+
+    }
+
+  return true; // may need to be revised.
   } // containsAll
 
 
@@ -305,6 +325,15 @@ public class AdaptiveList<E> implements List<E>
   public boolean retainAll(Collection<?> c)
   {
     // TODO
+    Iterator temp = c.Iterator();
+    AdaptiveListIterator l = new AdaptiveListIterator();
+    for (int i=0; i<numItems; i++){
+    for (int i=0; i<numItems; i++){
+      if (!c.contains(l.next())){
+        l.remove();
+      }
+    }
+
     return true; // may need to be revised.
   }
 
