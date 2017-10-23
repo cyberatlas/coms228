@@ -68,7 +68,8 @@ public class AdaptiveList<E> implements List<E>
 
   public AdaptiveList(Collection<? extends E> c)
   {
-    // TODO
+    clear();
+    addAll(c);
   }
 
   // Removes the node from the linked list.
@@ -123,12 +124,15 @@ public class AdaptiveList<E> implements List<E>
     if ( theArray == null || theArray.length < numItems )
       throw new RuntimeException("theArray is null or shorter");
 
-    // TODO
 
     head.link = tail;
     tail.prev = head;
-    for (int i =0; i<numItems; i++){}
 
+    for (int i =0; i<numItems; i++){
+
+      add(theArray[i]);
+
+    }
 
   }
 
@@ -149,9 +153,8 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public boolean isEmpty()
   {
-    // TODO Is this right?
 
-    if (head.link ==  tail){return true;}
+    if (head.link ==  tail && tail.prev == head){return true;}
 
     return false; // may need to be revised.
   }
@@ -171,22 +174,26 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public boolean addAll(Collection< ? extends E> c)
   {
-    // TODO
+
+    Iterator temp = c.iterator();
+    while (temp.hasNext()){
+      add((E)temp.next());
+  }
+
     return true; // may need to be revised.
   } // addAll 1
 
   @Override
   public boolean remove(Object obj)
   {
-    // TODO How do I get the value of the node?
 
     //Do I even need this?
     ListNode object = (ListNode)obj;
     ListNode n = head;
     //Loops through the list and checks every element if it equals the object.
-    while (n.value() != object.value()){
+    while (n.data != object.data){
       n= n.link;
-      if (n.value() == object.value()){
+      if (n.data == object.data){
         n.prev = n.prev.prev;
         n.prev.link = n.link;
         return true;
@@ -231,40 +238,60 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public void add(int pos, E obj)
   {
-    // TODO
+   //int position = 0;
+   AdaptiveListIterator l = new AdaptiveListIterator(pos);
+   l.add(obj);
+
   }
 
   @Override
   public boolean addAll(int pos, Collection< ? extends E> c)
   {
-    // TODO
+
+    AdaptiveListIterator l = new AdaptiveListIterator(pos);
+    Iterator I  =  c.iterator();
+
+    if (!I.hasNext()){return false; }
+    while (I.hasNext()){
+      l.add((E)I.next());
+    }
+
     return true; // may need to be revised.
   } // addAll 2
 
   @Override
   public E remove(int pos)
   {
-    // TODO
-    return null; // may need to be revised.
+
+    //TODO check the .next()
+    AdaptiveListIterator I = new AdaptiveListIterator(pos);
+    ListNode n = new ListNode(I.next());
+    //n.data = I.next();
+    I.remove();
+
+    return n.data; // may need to be revised.
   }
 
   @Override
   public E get(int pos)
   {
-    // TODO
+    //TODO Check the .next()
+    AdaptiveListIterator I = new AdaptiveListIterator(pos);
+    ListNode n = new ListNode(I.next());
+    n.data =  I.next();
 
-    ListNode n = head;
-    for (int i =0; i< pos; i++){
-      n = n.link;
-    }
-    return n.value(); // may need to be revised.
+    return n.data; // may need to be revised.
   }
 
   @Override
   public E set(int pos, E obj)
   {
-    // TODO
-    return null; // may need to be revised.
+    //TODO Check the .next()
+   AdaptiveListIterator I  = new AdaptiveListIterator(pos);
+   ListNode temp  = new ListNode(I.next());
+    I.next();
+    I.set(obj);
+    return temp.data; // may need to be revised.
   }
 
   // If the number of elements is at most 1, the method returns false.
@@ -319,15 +346,31 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public int indexOf(Object obj)
   {
-    // TODO
-    return -1; // may need to be revised.
+
+    AdaptiveListIterator I = new AdaptiveListIterator();
+    int index = 0;
+    while(I.hasNext()){
+      if (I.next() == obj){return index;}
+      index++;
+      I.next();
+    }
+
+    return -1; // Returns -1 if it does not contain the object
   }
 
   @Override
   public int lastIndexOf(Object obj)
   {
-    // TODO
-    return -1; // may need to be revised.
+
+    AdaptiveListIterator I = new AdaptiveListIterator();
+    int index = 0;
+    int lastIndex = -1;
+    while(I.hasNext()){
+      if (I.next() == obj){lastIndex = index;}
+      index++;
+      I.next();
+    }
+    return lastIndex;
   }
 
   @Override
@@ -391,19 +434,30 @@ public class AdaptiveList<E> implements List<E>
     public AdaptiveListIterator()
     {
       if ( ! linkedUTD ) updateLinked();
-      // TODO
+      index = 0;
+      cur = new ListNode(null);
+      cur.prev =head;
+      cur.link = head.link;
+
     }
     public AdaptiveListIterator(int pos)
     {
       if ( ! linkedUTD ) updateLinked();
-      // TODO
+
+      index = 0;
+      cur = new ListNode(null);
+      cur.prev =head;
+      cur.link = head.link;
+      while(index < pos){
+        next();
+      }
     }
 
     @Override
     public boolean hasNext()
     {
-      // TODO
-      return true; // may need to be revised.
+      if (cur.link != null || cur.link != tail || cur.link != head){return true;}
+      return false; // may need to be revised.
     }
 
     @Override
@@ -413,6 +467,7 @@ public class AdaptiveList<E> implements List<E>
       //Returns the next's data
       cur.prev = cur.link;
       cur.link = cur.link.link;
+      index++;
       return cur.prev.data; // may need to be revised.
     }
 
@@ -420,20 +475,24 @@ public class AdaptiveList<E> implements List<E>
     public boolean hasPrevious()
     {
       // TODO
-      return true; // may need to be revised.
+      if (cur.prev != null || cur.prev !=  head){return true}
+      return false; // may need to be revised.
     }
 
     @Override
     public E previous()
     {
-      // TODO
-      return null; // may need to be revised.
+      cur.link = cur.prev;
+      cur.prev = cur.prev.prev;
+
+      return cur.link.data;
     }
 
     @Override
     public int nextIndex()
     {
       // TODO
+
       return -1; // may need to be revised.
     }
 
