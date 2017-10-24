@@ -474,8 +474,9 @@ public class AdaptiveList<E> implements List<E>
     @Override
     public boolean hasPrevious()
     {
-      // TODO
-      if (cur.prev != null || cur.prev !=  head){return true}
+   
+    	//might also be cur.prev.data
+      if (cur.prev != null || cur.prev !=  head){return true;}
       return false; // may need to be revised.
     }
 
@@ -492,8 +493,8 @@ public class AdaptiveList<E> implements List<E>
     public int nextIndex()
     {
       // TODO
-
-      return -1; // may need to be revised.
+    	
+      return index++; // may need to be revised.
     }
 
     @Override
