@@ -162,12 +162,12 @@ public class AdaptiveList<E> implements List<E>
   @Override
   public boolean add(E obj)
   {
-    ListNode n = (ListNode) obj;
+    ListNode n = new ListNode(obj);
 
     n.prev = tail.prev;
     tail.prev.link = n;
     n.link  = tail;
-
+    numItems++;
     return true; // may need to be revised.
   }
 
@@ -188,14 +188,15 @@ public class AdaptiveList<E> implements List<E>
   {
 
     //Do I even need this?
-    ListNode object = (ListNode)obj;
+    //ListNode object =  new ListNode(obj);
     ListNode n = head;
     //Loops through the list and checks every element if it equals the object.
-    while (n.data != object.data){
+    while (n.data != obj){
       n= n.link;
-      if (n.data == object.data){
+      if (n.data == obj){
         n.prev = n.prev.prev;
         n.prev.link = n.link;
+        numItems--;
         return true;
       }
     }
@@ -263,8 +264,7 @@ public class AdaptiveList<E> implements List<E>
   public E remove(int pos)
   {
 
-    //TODO check the .next()
-    AdaptiveListIterator I = new AdaptiveListIterator(pos);
+	  AdaptiveListIterator I = new AdaptiveListIterator(pos);
     ListNode n = new ListNode(I.next());
     //n.data = I.next();
     I.remove();
@@ -433,42 +433,49 @@ public class AdaptiveList<E> implements List<E>
 
     public AdaptiveListIterator()
     {
-      if ( ! linkedUTD ) updateLinked();
+      
       index = 0;
       cur = new ListNode(null);
       cur.prev =head;
       cur.link = head.link;
-
+      
+      if ( ! linkedUTD ) updateLinked();
     }
     public AdaptiveListIterator(int pos)
     {
-      if ( ! linkedUTD ) updateLinked();
-
       index = 0;
       cur = new ListNode(null);
       cur.prev =head;
       cur.link = head.link;
       while(index < pos){
         next();
+        
       }
+      if ( ! linkedUTD ) updateLinked();
+
+      
     }
 
     @Override
     public boolean hasNext()
     {
-      if (cur.link != null || cur.link != tail || cur.link != head){return true;}
-      return false; // may need to be revised.
+      //if (cur.link != null || cur.link != tail || cur.link != head){return true;}
+    if (cur.link.link == null) {return false;}  
+    	return true; // may need to be revised.
     }
 
     @Override
-    public E next()
+    public E next() throws NoSuchElementException
     {
       //Sets the previous node to the next, sets the next node to the one after.
       //Returns the next's data
-      cur.prev = cur.link;
+    if (!hasNext()) {throw new NoSuchElementException(); }  
+    	cur.prev = cur.link;
       cur.link = cur.link.link;
       index++;
+      last = cur.prev;
       return cur.prev.data; // may need to be revised.
+    
     }
 
     @Override
@@ -485,6 +492,7 @@ public class AdaptiveList<E> implements List<E>
     {
       cur.link = cur.prev;
       cur.prev = cur.prev.prev;
+      last = cur.prev;
 
       return cur.link.data;
     }
@@ -492,7 +500,7 @@ public class AdaptiveList<E> implements List<E>
     @Override
     public int nextIndex()
     {
-      // TODO
+     
     	
       return index++; // may need to be revised.
     }
@@ -500,8 +508,8 @@ public class AdaptiveList<E> implements List<E>
     @Override
     public int previousIndex()
     {
-      // TODO
-      return -1; // may need to be revised.
+      
+      return index--; // may need to be revised.
     }
 
     public void remove()
@@ -512,17 +520,21 @@ public class AdaptiveList<E> implements List<E>
 
     public void add(E obj)
     {
-      // TODO
-      ListNode n = new ListNode;
-      n.previous() = tail.previous();
-      n.last().next() =n;
-      n.next().last = n;
+      
+      ListNode n = new  ListNode(obj);
+      n.prev = tail.prev;
+      n.prev.link =n;
+      n.link.prev = n;
     } // add
 
     @Override
     public void set(E obj)
     {
-      // TODO
+      // sets the last node iterated over to obj
+    
+    	
+    	last.data = obj;
+    	
     } // set
   } // AdaptiveListIterator
 

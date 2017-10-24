@@ -1,6 +1,9 @@
 package edu.iastate.cs228.hw3;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.ListIterator;
@@ -8,8 +11,6 @@ import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import temp.AdaptiveList;
 
 /**
  * A class full of tests for this assignment's iterator. The tests are arranged by logical ordering
