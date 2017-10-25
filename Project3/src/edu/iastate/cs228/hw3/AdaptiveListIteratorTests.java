@@ -1,9 +1,7 @@
 package edu.iastate.cs228.hw3;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.ListIterator;
@@ -11,6 +9,8 @@ import java.util.NoSuchElementException;
 
 import org.junit.Before;
 import org.junit.Test;
+
+//import temp.AdaptiveList;
 
 /**
  * A class full of tests for this assignment's iterator. The tests are arranged by logical ordering
@@ -253,7 +253,7 @@ public class AdaptiveListIteratorTests {
 	@Test
 	public void AddTest1() {
 		iterAtBegin.add("Begin");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(Begin, -, u, i, u, hg, -)";
 		assertEquals("The add method should add Begin before the cursor.", expected, toString);
 	}
@@ -263,7 +263,7 @@ public class AdaptiveListIteratorTests {
 	public void AddTest2() {
 		iterAtBegin.add("Begin");
 		iterAtBegin.add("Next");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(Begin, Next, -, u, i, u, hg, -)";
 		assertEquals("The add method should add begin and then Next before the cursor.", expected, toString);
 	}
@@ -274,7 +274,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.add("Begin");
 		iterAtBegin.next();
 		iterAtBegin.add("Next");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(Begin, -, Next, u, i, u, hg, -)";
 		assertEquals("The add method should add Begin, go past the null, and then add Next before the "
 					+ "cursor.", expected, toString);
@@ -284,7 +284,7 @@ public class AdaptiveListIteratorTests {
 	@Test
 	public void AddTest4() {
 		iterAtEnd.add("Begin");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg, -, Begin)";
 		assertEquals("The add method should add Begin at the end.", expected, toString);
 	}
@@ -294,7 +294,7 @@ public class AdaptiveListIteratorTests {
 	public void AddTest5() {
 		iterAtEnd.add("Begin");
 		iterAtEnd.add("Last");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg, -, Begin, Last)";
 		assertEquals("The add method should add Begin at the end and then add Last also.", expected, toString);
 	}
@@ -303,7 +303,7 @@ public class AdaptiveListIteratorTests {
 	@Test
 	public void AddTest6() {
 		iterAtMiddle.add(null);
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, -, i, u, hg, -)";
 		assertEquals("The add method should add null values just like other values.", expected, toString);
 	}
@@ -367,7 +367,7 @@ public class AdaptiveListIteratorTests {
 	public void RemoveTest1() {
 		iterAtBegin.next();
 		iterAtBegin.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(u, i, u, hg, -)";
 		assertEquals("The remove method should remove the null item that was just passed over (by next or previous).", expected, toString);
 	}
@@ -378,7 +378,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.next();
 		iterAtBegin.previous();
 		iterAtBegin.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(u, i, u, hg, -)";
 		assertEquals("The remove method should remove the null item that was just passed over (by next or previous).", expected, toString);
 	}
@@ -389,7 +389,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.next();
 		iterAtBegin.next();
 		iterAtBegin.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, i, u, hg, -)";
 		assertEquals("The remove method should remove the u that was just passed over (next or previous).", expected, toString);
 	}
@@ -401,7 +401,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.next();
 		iterAtBegin.previous();
 		iterAtBegin.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, i, u, hg, -)";
 		assertEquals("The remove method should remove the u item that was just passed over (next or previous).", expected, toString);
 	}
@@ -411,7 +411,7 @@ public class AdaptiveListIteratorTests {
 	public void RemoveTest5() {
 		iterAtEnd.previous();
 		iterAtEnd.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg)";
 		assertEquals("The remove method should remove the null item that was just passed over (next or previous).", expected, toString);
 	}
@@ -422,7 +422,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.previous();
 		iterAtEnd.previous();
 		iterAtEnd.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, -)";
 		assertEquals("The remove method should remove the hg that was just passed over (next or previous).", expected, toString);
 	}
@@ -434,7 +434,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.previous();
 		iterAtEnd.next();
 		iterAtEnd.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, -)";
 		assertEquals("The remove method should remove the hg that was just passed over (next or previous).", expected, toString);
 	}
@@ -447,7 +447,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.add("End");
 		iterAtEnd.previous();
 		iterAtEnd.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg)";
 		assertEquals("The remove method should work after a call to next, after add.", expected, toString);
 	}
@@ -460,7 +460,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.remove();
 		iterAtEnd.previous();
 		iterAtEnd.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u)";
 		assertEquals("The remove method should work after a call to set, even with no next in between.", expected, toString);
 	}
@@ -473,7 +473,7 @@ public class AdaptiveListIteratorTests {
 		iterAtMiddle.add("3");
 		iterAtMiddle.next();
 		iterAtMiddle.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, 1, 2, 3, u, hg, -)";
 		assertEquals("The remove method should work after a call to next, even after three add calls.", expected, toString);
 	}
@@ -513,7 +513,7 @@ public class AdaptiveListIteratorTests {
 	public void SetTest1() {
 		iterAtBegin.next();
 		iterAtBegin.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(P, u, i, u, hg, -)";
 		assertEquals("The set method should change item that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -524,7 +524,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.next();
 		iterAtBegin.previous();
 		iterAtBegin.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(P, u, i, u, hg, -)";
 		assertEquals("The set method should change the null item that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -535,7 +535,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.next();
 		iterAtBegin.next();
 		iterAtBegin.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, P, i, u, hg, -)";
 		assertEquals("The set method should change the u that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -547,7 +547,7 @@ public class AdaptiveListIteratorTests {
 		iterAtBegin.next();
 		iterAtBegin.previous();
 		iterAtBegin.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, P, i, u, hg, -)";
 		assertEquals("The set method should change the u that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -557,7 +557,7 @@ public class AdaptiveListIteratorTests {
 	public void SetTest5() {
 		iterAtEnd.previous();
 		iterAtEnd.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg, P)";
 		assertEquals("The set method should change the null item that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -568,7 +568,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.previous();
 		iterAtEnd.next();
 		iterAtEnd.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg, P)";
 		assertEquals("The set method should change the null item that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -579,7 +579,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.previous();
 		iterAtEnd.previous();
 		iterAtEnd.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, P, -)";
 		assertEquals("The set method should change the hg that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -591,7 +591,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.previous();
 		iterAtEnd.next();
 		iterAtEnd.set("P");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, P, -)";
 		assertEquals("The set method should change the hg that was just passed over to P (by next or previous).", expected, toString);
 	}
@@ -605,7 +605,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.previous();
 		iterAtEnd.set("o");
 		iterAtEnd.remove();
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg, P)";
 		assertEquals("The set method should not fail after a previous/next call.", expected, toString);
 	}
@@ -617,7 +617,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.set("P");
 		iterAtEnd.set("o");
 		iterAtEnd.set("last");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, hg, last)";
 		assertEquals("The set method can be called multiple times consecutively.", expected, toString);
 	}
@@ -633,7 +633,7 @@ public class AdaptiveListIteratorTests {
 		iterAtEnd.add("I");
 		iterAtEnd.next();
 		iterAtEnd.set("TU");
-		String toString = list.toStringLinked().substring(55);
+		String toString = list.toStringLinked().substring(54);
 		String expected = "(-, u, i, u, I, TU, last)";
 		assertEquals("The set method should work with the rest of the methods also.", expected, toString);
 	}
