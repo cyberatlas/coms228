@@ -51,7 +51,7 @@ public class AdaptiveList<E> implements List<E>
     tail.prev = head;
     numItems = 0;
     linkedUTD = true;
-    arrayUTD = false;
+    arrayUTD = true;
     theArray = null;
   }
 
@@ -166,6 +166,8 @@ linkedUTD = true;
     link(tail.prev,n);
     numItems++;
     arrayUTD = false;
+    
+    
     return true; // may need to be revised.
   }
 
@@ -246,22 +248,25 @@ linkedUTD = true;
   public void add(int pos, E obj)
   {
    //int position = 0;
+	 if (!arrayUTD) {updateArray();}
    AdaptiveListIterator l = new AdaptiveListIterator(pos);
    l.add(obj);
-
+   arrayUTD = false;
   }
 
   @Override
   public boolean addAll(int pos, Collection< ? extends E> c) throws IndexOutOfBoundsException
   {
+	  //TODO this is fucked rn
 	if (pos < 0 || pos > size()) {throw new IndexOutOfBoundsException();}  
 	
-    AdaptiveListIterator l = new AdaptiveListIterator(pos);
+    AdaptiveListIterator q = new AdaptiveListIterator(pos);
     Iterator I  =  c.iterator();
 
-    if (!I.hasNext()){return false; }
-    while (I.hasNext()){
-      l.add((E)I.next());
+    if (!I.hasNext() ){return false; }
+    while (I.hasNext() && I.next().equals(head) && I.next().equals(tail)){
+    E temp=	(E)I.next(); 
+    	q.add(temp);
     }
 
     return true; // may need to be revised.
@@ -412,10 +417,17 @@ linkedUTD = true;
   public boolean retainAll(Collection<?> c)
   {
     // TODO- Accomplish by looping throgh the list array and checking if it has what is in the collection look at other looped stuff for reference
-	ListNode l;
-	for () {}
+	//TODO USES COLLECTIONS FIXXXXXXXXCXXXXXXXXXXXXXXX
+	  //ListNode l;
+	  
+	//for () {}
     Iterator temp = c.iterator();
     AdaptiveListIterator l = new AdaptiveListIterator();
+//    for (int i =0; i < numItems; i++) {
+//    		if ()
+//    	
+//    }
+    
     for (int i=0; i<numItems; i++){
       if (!c.contains(l.next())){
         l.remove();
@@ -500,11 +512,16 @@ linkedUTD = true;
       //Sets the previous node to the next, sets the next node to the one after.
       //Returns the next's data
     if (!hasNext()) {throw new NoSuchElementException(); }  
-    	cur.prev = cur.link;
-      cur.link = cur.link.link;
+   
+    
+    ListNode temporary = cur;
+    cur  = cur.link;
+    cur.prev = temporary;
+      //cur.link = cur.link.link;
       index++;
+//      cur = cur.link.link;
       last = cur.prev;
-      return cur.prev.data; // may need to be revised.
+      return cur.data; // may need to be revised.
     
     }
 
@@ -520,11 +537,18 @@ linkedUTD = true;
     @Override
     public E previous()
     {
-      cur.link = cur.prev;
-      cur.prev = cur.prev.prev;
-      last = cur.prev;
+    	
+    ListNode temporary = cur;
+    
+    cur = cur.prev;
+    	cur.link = temporary;
+//    cur.prev = cur.prev.prev;
+  
+    	//cur = cur.prev;
+      last = cur.link;
+      index--;
 
-      return cur.link.data;
+      return cur.data;
     }
 
     @Override
@@ -547,6 +571,7 @@ linkedUTD = true;
     {
     	
      if (last != null) {unlink(last);}
+      
     }
 
     @Override
@@ -560,7 +585,9 @@ linkedUTD = true;
       
       link(cur, n);
       index++;
+      numItems++;
       
+      cur = cur.link;
       arrayUTD =false;
     } // add
 
@@ -570,7 +597,7 @@ linkedUTD = true;
       // sets the last node iterated over to obj
 
     	last.data = obj;
-    	linkedUTD =false;
+    	arrayUTD =false;
     } // set
   } // AdaptiveListIterator
 

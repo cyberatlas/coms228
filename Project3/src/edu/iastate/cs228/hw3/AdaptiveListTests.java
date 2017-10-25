@@ -306,7 +306,7 @@ public class AdaptiveListTests {
 	@Test
 	public void AddAllTest8() {
 		list.add("poi");
-		list.addAll(list);
+		//list.addAll(list);
 		String newSize = list.toStringLinked().substring(54);
 		String expected ="(poi, poi)";
 		assertEquals("After calling addAll(list) on the list with 1 element, the list should "
@@ -418,7 +418,9 @@ public class AdaptiveListTests {
 	public void AddAllPosTest11() {
 		list.add("poi");
 		list.add("981");
+		
 		list.addAll(1, list);
+		System.out.println("Print test");
 		String newSize = list.toStringLinked().substring(54);
 		String expected ="(poi, poi, 981, 981)";
 		assertEquals("After calling addAll(1, list) on the list with 1 element, the list should "
