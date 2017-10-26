@@ -201,8 +201,9 @@ linkedUTD = true;
     while (n.data != obj){
       n= n.link;
       if (n.data == obj){
-        n.prev = n.prev.prev;
-        n.prev.link = n.link;
+//        n.prev = n.prev.prev;
+//        n.prev.link = n.link;
+    	  unlink (n);
         numItems--;
        arrayUTD = false;
         return true;
@@ -257,7 +258,7 @@ linkedUTD = true;
   @Override
   public boolean addAll(int pos, Collection< ? extends E> c) throws IndexOutOfBoundsException
   {
-	  //TODO this is fucked rn
+	  //TODO What is even wrong here? Also the type mismatch is weird. Put <E> and then the types aren't the same
 	if (pos < 0 || pos > size()) {throw new IndexOutOfBoundsException();}  
 	
     AdaptiveListIterator q = new AdaptiveListIterator(pos);
@@ -409,8 +410,18 @@ linkedUTD = true;
   @Override
   public boolean removeAll(Collection<?> c)
   {
-    // TODO
-    return true; // may need to be revised.
+    // TODO How come this does not work?
+	  
+//	  boolean isChanged = false;
+//	  Iterator temp  = c.iterator();
+//		while (temp.hasNext()) {
+//			if (c.contains(temp.next())) {
+//				temp.remove();
+//				isChanged = true;
+//			}
+//		}
+//	  
+    return true;//isChanged; // may need to be revised.
   }
 
   @Override
@@ -457,8 +468,11 @@ linkedUTD = true;
   @Override
   public <T> T[] toArray(T[] arr)
   {
-    // TODO
-    return null; // may need to be revised.
+    // TODO When I activate this code, it throws more errors
+//	  for (int i = 0; i < numItems; i++) {
+//			arr[i] = (T) theArray[i];
+//		}
+    return null;//arr; // may need to be revised.
   }
 
   @Override
