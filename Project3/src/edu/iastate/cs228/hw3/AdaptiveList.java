@@ -175,11 +175,17 @@ linkedUTD = true;
   public boolean addAll(Collection< ? extends E> c) throws NullPointerException
   {
 	  if (!linkedUTD) {updateLinked();}
-   // Iterator temp = c.iterator();
+    Iterator temp = c.iterator();
     if (c ==null) {throw new NullPointerException();}
     if (c.isEmpty()) {return false;}
-    for (E e : c) {
-    		add(e);
+//    for (E e : c) {
+////    		if ( e.equals(tail)) {
+////    			break;
+////    		}
+//    		add(e);
+//    }
+    while(temp.hasNext()) {
+    		add((E)temp.next());
     }
     arrayUTD = false;
     
@@ -606,7 +612,7 @@ linkedUTD = true;
     @Override
     public int nextIndex()
     {
-     
+    if (index >= numItems) {return numItems;}
     	
       return index++; // may need to be revised
     }
