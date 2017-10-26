@@ -250,27 +250,56 @@ linkedUTD = true;
   {
    //int position = 0;
 	 if (!arrayUTD) {updateArray();}
+	 if (pos <= numItems) {
    AdaptiveListIterator l = new AdaptiveListIterator(pos);
    l.add(obj);
    arrayUTD = false;
+   numItems++;
   }
+	 }
 
   @Override
   public boolean addAll(int pos, Collection< ? extends E> c) throws IndexOutOfBoundsException
   {
 	  //TODO What is even wrong here? Also the type mismatch is weird. Put <E> and then the types aren't the same
-	if (pos < 0 || pos > size()) {throw new IndexOutOfBoundsException();}  
+	if (pos < 0 || pos > c.size()) {throw new IndexOutOfBoundsException();}  
 	
-    AdaptiveListIterator q = new AdaptiveListIterator(pos);
-    Iterator I  =  c.iterator();
+	boolean isAdded = false;
 
-    if (!I.hasNext() ){return false; }
-    while (I.hasNext() && I.next().equals(head) && I.next().equals(tail)){
-    E temp=	(E)I.next(); 
-    	q.add(temp);
-    }
-
-    return true; // may need to be revised.
+//	ListNode n = findNode(pos);
+//	int numAdded = 0;
+//	while (c.size() != numAdded) {
+	//	link(n, )
+	//}
+	
+	//    AdaptiveListIterator q = new AdaptiveListIterator(pos);
+//    ListIterator<E> I  =  listIterator();
+//
+//    //if (!I.hasNext() ){return false; }
+//
+//    while (I.hasNext() && !I.next().equals(head) && !I.next().equals(tail)){
+//    		E temp=	(E)I.next(); 
+//    		q.add(temp);
+//    		isAdded = true;
+//    }
+	int i = 0;
+	E[] arr = (E[]) c.toArray();
+	for (E e:c) {
+		arr[i] =e;
+		i++;
+	}
+	ListNode temp = findNode(pos);
+	for (E e : arr) {
+		ListNode ln = new ListNode(e);
+		link(temp, ln);
+		temp = ln;
+		//pos++;
+		isAdded = true;
+	}
+//    for (Object o : arr) {
+//    		
+//    }
+    return isAdded; // may need to be revised.
   } // addAll 2
 
   @Override
@@ -411,17 +440,26 @@ linkedUTD = true;
   public boolean removeAll(Collection<?> c)
   {
     // TODO How come this does not work?
+	  //returning true no matter what
 	  
-//	  boolean isChanged = false;
-//	  Iterator temp  = c.iterator();
-//		while (temp.hasNext()) {
-//			if (c.contains(temp.next())) {
-//				temp.remove();
+	  
+	  boolean isChanged = false;
+	  ListIterator <E> l = listIterator();
+//	 // Iterator temp  = c.iterator();
+//		while (c.hasNext()) {
+//			if (l.contains(c.next())) {
+//				l.remove();
 //				isChanged = true;
 //			}
 //		}
+		while (l.hasNext()) {
+			if (c.contains(l.next())) {
+				l.remove();
+				isChanged = true; 
+			}
+		}
 //	  
-    return true;//isChanged; // may need to be revised.
+    return isChanged; // may need to be revised.
   }
 
   @Override
@@ -549,9 +587,9 @@ linkedUTD = true;
     }
 
     @Override
-    public E previous()
+    public E previous() throws IndexOutOfBoundsException
     {
-    	
+    	if (cur.prev != tail || cur.prev != head || cur.prev != null) {//throw new IndexOutOfBoundsException();}
     ListNode temporary = cur;
     
     cur = cur.prev;
@@ -561,7 +599,7 @@ linkedUTD = true;
     	//cur = cur.prev;
       last = cur.link;
       index--;
-
+    	}
       return cur.data;
     }
 

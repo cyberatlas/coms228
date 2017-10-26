@@ -303,10 +303,10 @@ public class AdaptiveListTests {
 	}
 	
 	//tests to see if addAll() changes the list correctly with the list itself
-	@Test
+	@Test(timeout =500)
 	public void AddAllTest8() {
 		list.add("poi");
-		//list.addAll(list);
+		list.addAll(list);
 		String newSize = list.toStringLinked().substring(54);
 		String expected ="(poi, poi)";
 		assertEquals("After calling addAll(list) on the list with 1 element, the list should "
@@ -314,11 +314,13 @@ public class AdaptiveListTests {
 	}
 	
 	//tests to see if addAll() changes the list correctly with the list itself
-	@Test
+	@Test(timeout=5000)
 	public void AddAllTest9() {
 		list.add("poi");
 		list.add("lol");
+		System.out.println(list);
 		list.addAll(0, list);
+		System.out.println(list);
 		String newSize = list.toStringLinked().substring(54);
 		String expected ="(poi, lol, poi, lol)";
 		assertEquals("After calling addAll(list) on the list with 2 elements, the list should "
@@ -1020,6 +1022,7 @@ public class AdaptiveListTests {
 	@Test
 	public void RemoveAllTest11() {
 		boolean removed = list.removeAll(new AdaptiveList<>());
+		System.out.println(removed);
 		assertFalse("After removing nothing, addAll should return false.", removed);
 	}
 	
