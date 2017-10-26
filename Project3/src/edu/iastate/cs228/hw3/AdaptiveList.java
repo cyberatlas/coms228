@@ -595,18 +595,22 @@ linkedUTD = true;
     @Override
     public E previous() throws IndexOutOfBoundsException
     {
+    	
+    	
+    	
     	if (cur.prev != tail || cur.prev != head || cur.prev != null) {//throw new IndexOutOfBoundsException();}
-    ListNode temporary = cur;
+    
+    	ListNode temporary = cur;
     
     cur = cur.prev;
     	cur.link = temporary;
-//    cur.prev = cur.prev.prev;
+    cur.prev = cur.prev.prev;
   
     	//cur = cur.prev;
       last = cur.link;
       index--;
-    	}
-      return cur.data;
+   	}
+      return cur.link.data;
     }
 
     @Override
