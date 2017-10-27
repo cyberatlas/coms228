@@ -88,7 +88,7 @@ public class AdaptiveListTests {
 	@Test
 	public void AddTest1() {
 		list.add("oi");
-		String result = list.toStringLinked().substring(54); //get the list at the end
+		String result = list.toStringLinked().substring(55); //get the list at the end
 		String expected = "(oi)";
 		assertEquals("After calling add(\"oi\"), \"oi\" should be added to the list.", expected, result);
 	}
@@ -130,7 +130,7 @@ public class AdaptiveListTests {
 	@Test
 	public void AddTest6() {
 		list.add(null);
-		String result = list.toStringLinked().substring(54); //get the list at the end
+		String result = list.toStringLinked().substring(55); //get the list at the end
 		String expected = "(-)";
 		assertEquals("After calling add(null) on the empty list, null should be added to the list.", expected, result);
 	}
@@ -140,7 +140,7 @@ public class AdaptiveListTests {
 	public void AddTest7() {
 		list.add("oi");
 		list.add("pk");
-		String result = list.toStringLinked().substring(54); //get the list at the end
+		String result = list.toStringLinked().substring(55); //get the list at the end
 		String expected = "(oi, pk)";
 		assertEquals("After calling add(\"oi\") and add(\"pk\" to the empty list, both of the strings "
 				+ 	"should be at the end of the list.", expected, result);
@@ -171,7 +171,7 @@ public class AdaptiveListTests {
 	@Test
 	public void AddPosTest2() {
 		list.add(0,"oi");
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(oi)";
 		assertEquals("After calling add(0,\"oi\") on the empty list, oi should have been "
 				   + "added to the list.", expected, newSize);
@@ -193,7 +193,7 @@ public class AdaptiveListTests {
 	public void AddPosTest4() {
 		list.add("beg");
 		list.add(1,"oi");
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(beg, oi)";
 		assertEquals("After calling add(1,\"oi\") on the a list with 1 element, oi should have been "
 				   + "added to the end.", expected, newSize);
@@ -215,7 +215,7 @@ public class AdaptiveListTests {
 	public void AddPosTest6() {
 		list.add("beg");
 		list.add(0,"oi");
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(oi, beg)";
 		assertEquals("After calling add(0,\"oi\") on the a list with 1 element, oi should have been "
 				   + "added to the beginning.", expected, newSize);
@@ -250,7 +250,7 @@ public class AdaptiveListTests {
 	@Test
 	public void AddAllTest2() {
 		list.addAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(-, u, i, u, hg, -)";
 		assertEquals("After calling addAll(otherList) on the empty list, the list should "
 				   + "be equal to otherList.", expected, newSize);
@@ -271,7 +271,7 @@ public class AdaptiveListTests {
 	public void AddAllTest4() {
 		list.add("poi");
 		list.addAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(poi, -, u, i, u, hg, -)";
 		assertEquals("After calling addAll(otherList) on the list with 1 element, the list should "
 				   + "have otherList at the end.", expected, newSize);
@@ -307,7 +307,7 @@ public class AdaptiveListTests {
 	public void AddAllTest8() {
 		list.add("poi");
 		list.addAll(list);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(poi, poi)";
 		assertEquals("After calling addAll(list) on the list with 1 element, the list should "
 				   + "have added itself to the end.", expected, newSize);
@@ -321,7 +321,7 @@ public class AdaptiveListTests {
 		System.out.println(list);
 		list.addAll(0, list);
 		System.out.println(list);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(poi, lol, poi, lol)";
 		assertEquals("After calling addAll(list) on the list with 2 elements, the list should "
 				   + "have added itself at the end.", expected, newSize);
@@ -349,7 +349,7 @@ public class AdaptiveListTests {
 	public void AddAllPosTest2() {
 		list.add("poi");
 		list.addAll(0, otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(-, u, i, u, hg, -, poi)";
 		assertEquals("After calling addAll(0,otherList) on the list with 1 element, the list should "
 				   + "have added otherList at the front.", expected, newSize);
@@ -361,7 +361,7 @@ public class AdaptiveListTests {
 		list.add("poi");
 		list.add("ouy");
 		list.addAll(1, otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(poi, -, u, i, u, hg, -, ouy)";
 		assertEquals("After calling addAll(1,otherList) on the list with 2 elements, the list should "
 				   + "have added otherList in the middle.", expected, newSize);
@@ -409,7 +409,7 @@ public class AdaptiveListTests {
 	public void AddAllPosTest10() {
 		list.add("poi");
 		list.addAll(0, list);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(poi, poi)";
 		assertEquals("After calling addAll(0, list) on the list with 1 element, the list should "
 				   + "have added itself at the front.", expected, newSize);
@@ -423,7 +423,7 @@ public class AdaptiveListTests {
 		
 		list.addAll(1, list);
 		System.out.println("Print test");
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected ="(poi, poi, 981, 981)";
 		assertEquals("After calling addAll(1, list) on the list with 1 element, the list should "
 				   + "have added itself in the middle.", expected, newSize);
@@ -591,7 +591,7 @@ public class AdaptiveListTests {
 	public void GetTest2() {
 		list.add("poi");
 		list.get(0);
-		String toString = list.toStringArray().substring(48);
+		String toString = list.toStringArray().substring(49);
 		String expected = "[poi]";
 		assertEquals("The array should be updated after a get call.", expected, toString);
 		assertTrue("The array should be updated after a get call.", list.getarrayUTD());
@@ -602,7 +602,7 @@ public class AdaptiveListTests {
 	public void GetTest3() {
 		list.add("poi");
 		list.get(0);
-		String toString = list.toStringLinked().substring(54);
+		String toString = list.toStringLinked().substring(55);
 		String expected = "(poi)";
 		assertEquals("The linked list should not be modified by a get call.", expected, toString);
 		assertTrue("The linkedList should be still be updated after a get call.", list.getlinkedUTD());
@@ -768,7 +768,7 @@ public class AdaptiveListTests {
 	public void RemovePosTest1() {
 		list.add("poi");
 		list.remove(0);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "()";
 		assertEquals("A list that just added and then removed poi should be empty.", expected, newSize);
 	}
@@ -791,7 +791,7 @@ public class AdaptiveListTests {
 		list.add("poi");
 		list.add("uty");
 		list.remove(1);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(poi)";
 		assertEquals(
 				"A list of size 2 that just removed the second element should have only the " + "first element left.",
@@ -816,7 +816,7 @@ public class AdaptiveListTests {
 		list.add(null);
 		list.add("uty");
 		list.remove(0);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(uty)";
 		assertEquals(
 				"A list that just removed the null first element should have only the "
@@ -853,7 +853,7 @@ public class AdaptiveListTests {
 	public void RemoveObjTest1() {
 		list.add("poi");
 		list.remove("poi");
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "()";
 		assertEquals("A list that just added and then removed poi should be empty.", expected, newSize);
 	}
@@ -876,7 +876,7 @@ public class AdaptiveListTests {
 		list.add("poi");
 		list.add("uty");
 		list.remove("uty");
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(poi)";
 		assertEquals("A list of size 2 that just removed the second element explicitly should have only the "
 				+ "first element left.", expected, newSize);
@@ -901,7 +901,7 @@ public class AdaptiveListTests {
 		list.add("uly");
 		list.add(null);
 		list.remove(null);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(uly, -)";
 		assertEquals("A list that just removed the null first element should have only the "
 				+ "second element left. There should also be no NullPointerExceptions here. Additionally, "
@@ -934,7 +934,7 @@ public class AdaptiveListTests {
 	public void RemoveAllTest2() {
 		list.addAll(otherList);
 		list.removeAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "()";
 		assertEquals("After adding and removing the same list, the list should be empty.", expected, newSize);
 	}
@@ -956,7 +956,7 @@ public class AdaptiveListTests {
 		list.add(null);
 		list.addAll(otherList);
 		list.removeAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "()";
 		assertEquals("After adding and removing the same list with an element in otherList, "
 				+ "the list should be empty.", expected, newSize);
@@ -980,7 +980,7 @@ public class AdaptiveListTests {
 		list.add("something else");
 		list.addAll(otherList);
 		list.removeAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(something else)";
 		assertEquals("After adding and removing the same list to a list with an element not in otherList, "
 				+ "the element not in the otherList should be the only element.", expected, newSize);
@@ -990,7 +990,7 @@ public class AdaptiveListTests {
 	@Test
 	public void RemoveAllTest7() {
 		list.removeAll(list);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "()";
 		assertEquals("After removing itself, the list should be empty.", expected, newSize);
 	}
@@ -1042,7 +1042,7 @@ public class AdaptiveListTests {
 	public void RetainAllTest2() {
 		list.addAll(otherList);
 		list.retainAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(-, u, i, u, hg, -)";
 		assertEquals("After adding and retaining the same list, the list should be the same as the added list.", expected, newSize);
 	}
@@ -1064,7 +1064,7 @@ public class AdaptiveListTests {
 		list.add(null);
 		list.addAll(otherList);
 		list.retainAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(-, -, u, i, u, hg, -)";
 		assertEquals("After adding and retaining the same list with an element in otherList, "
 				+ "the list should have all of the elements that were added.", expected, newSize);
@@ -1088,7 +1088,7 @@ public class AdaptiveListTests {
 		list.add("something else");
 		list.addAll(otherList);
 		list.retainAll(otherList);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(-, u, i, u, hg, -)";
 		assertEquals("After adding and removing the same list to a list with an element not in otherList, "
 				+ "the element not in the otherList should have been removed.", expected, newSize);
@@ -1099,7 +1099,7 @@ public class AdaptiveListTests {
 	public void RetainAllTest7() {
 		list.add("8");
 		list.retainAll(list);
-		String newSize = list.toStringLinked().substring(54);
+		String newSize = list.toStringLinked().substring(55);
 		String expected = "(8)";
 		assertEquals("After retaining itself, the list should not have changed.", expected, newSize);
 	}
@@ -1149,7 +1149,7 @@ public class AdaptiveListTests {
 	public void SetTest2() {
 		list.add("poi");
 		list.set(0, "else");
-		String toString = list.toStringArray().substring(48);
+		String toString = list.toStringArray().substring(49);
 		String expected = "[else]";
 		assertEquals("The array should be updated after a set call.", expected, toString);
 		assertTrue("The array should be updated after a set call.", list.getarrayUTD());
@@ -1160,7 +1160,7 @@ public class AdaptiveListTests {
 	public void SetTest3() {
 		list.add("poi");
 		list.set(0, "else");
-		String toString = list.toStringLinked().substring(54);
+		String toString = list.toStringLinked().substring(55);
 		String expected = "(poi)";
 		assertEquals("The linked list should be not be changed by a set call.", expected, toString);
 		assertFalse("The linkedList should be not still be updated after a set call.", list.getlinkedUTD());
@@ -1183,7 +1183,7 @@ public class AdaptiveListTests {
 	public void SetTest6() {
 		list.add("o");
 		list.set(0, null);
-		String toString = list.toStringArray().substring(48);
+		String toString = list.toStringArray().substring(49);
 		String expected = "[-]";
 		assertEquals("The array should allow nulls in the list, just like in everywhere else.", expected, toString);
 	}

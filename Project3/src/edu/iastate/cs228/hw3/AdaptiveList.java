@@ -192,9 +192,9 @@ linkedUTD = true;
   @Override
   public boolean add(E obj)
   {
-	if (!linkedUTD) {updateLinked();}
-    ListNode n = new ListNode(obj);
-    link(tail.prev,n);
+	if (linkedUTD == false) {updateLinked();}
+    ListNode node = new ListNode(obj);
+    link(tail.prev,node);
     numItems++;
     arrayUTD = false;
     
@@ -211,22 +211,24 @@ linkedUTD = true;
     if (c ==null) {throw new NullPointerException();}
     if (c.isEmpty()) {return false;}
 
-    
-    E[] temp2 = (E[]) new Object[c.size()];
+    boolean added = false;
+    E[] temporary = (E[]) new Object[c.size()];
     for(E e: c)
     {
-    	temp2[i] = e;
+    	temporary[i] = e;
     	i++;
     }
-    for(E e: temp2)
+    for(E e: temporary)
     {
     	add(e);
+    	added = true;
+ 
     }
     arrayUTD = false;
     
 
 
-    return true;   } 
+    return added;   } 
 
   @Override
   public boolean remove(Object obj)
@@ -380,6 +382,7 @@ public void addLast(E e) {
     unlink(n);
     arrayUTD = false;
     return data; 
+    
   }
 
   @Override
