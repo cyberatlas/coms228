@@ -176,7 +176,6 @@ linkedUTD = true;
       n = n.link;
     }
 
-
     return count; 
   }
 
@@ -572,7 +571,7 @@ public void addLast(E e) {
       cur = new ListNode(null);
       cur.prev =head;
       cur.link = head.link;
-      
+      arrayUTD = false;
       if ( ! linkedUTD ) updateLinked();
     }
     public AdaptiveListIterator(int pos)
@@ -581,6 +580,7 @@ public void addLast(E e) {
       cur = new ListNode(null);
       cur.prev =head;
       cur.link = head.link;
+      arrayUTD = false;
       while(index < pos){
         next();
         
