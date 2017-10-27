@@ -303,7 +303,7 @@ public class AdaptiveListTests {
 	}
 	
 	//tests to see if addAll() changes the list correctly with the list itself
-	@Test(timeout =500)
+	@Test//(timeout =500)
 	public void AddAllTest8() {
 		list.add("poi");
 		list.addAll(list);
@@ -314,7 +314,7 @@ public class AdaptiveListTests {
 	}
 	
 	//tests to see if addAll() changes the list correctly with the list itself
-	@Test(timeout=5000)
+	@Test//(timeout=5000)
 	public void AddAllTest9() {
 		list.add("poi");
 		list.add("lol");

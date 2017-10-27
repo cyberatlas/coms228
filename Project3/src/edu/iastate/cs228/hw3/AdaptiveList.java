@@ -1,12 +1,13 @@
 
 package edu.iastate.cs228.hw3;
 /*
- *  @author
+ *  @author Alexander Stevenson
  *
  *  An implementation of List<E> based on a doubly-linked list with an array for indexed reads/writes
  *
  */
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -174,6 +175,7 @@ linkedUTD = true;
   @Override
   public boolean addAll(Collection< ? extends E> c) throws NullPointerException
   {
+	  int i = 0;
 	  if (!linkedUTD) {updateLinked();}
     Iterator temp = c.iterator();
     if (c ==null) {throw new NullPointerException();}
@@ -184,9 +186,20 @@ linkedUTD = true;
 ////    		}
 //    		add(e);
 //    }
-    while(temp.hasNext()) {
-    		add((E)temp.next());
+    
+    E[] temp2 = (E[]) new Object[c.size()];
+    for(E e: c)
+    {
+    	temp2[i] = e;
+    	i++;
     }
+    for(E e: temp2)
+    {
+    	add(e);
+    }
+//    while(temp.hasNext()) {
+//    		add((E)temp.next());
+//    }
     arrayUTD = false;
     
 //	 while (temp.hasNext()){
@@ -255,21 +268,56 @@ linkedUTD = true;
   public void add(int pos, E obj)
   {
    //int position = 0;
-	 if (!arrayUTD) {updateArray();}
-	 if (pos <= numItems) {
-   AdaptiveListIterator l = new AdaptiveListIterator(pos);
-   l.add(obj);
-   arrayUTD = false;
-   numItems++;
-  }
+//	  if ( pos > numItems || pos < 0 ) {throw new IndexOutOfBoundsException();}
+//	 if (!arrayUTD) {updateArray();}
+//	 if (pos <= numItems) {
+//   AdaptiveListIterator l = new AdaptiveListIterator(pos);
+//   l.add(obj);
+//   arrayUTD = false;
+//   numItems++;
+//  }
+	  
+	  if (pos ==0) {addFirst(obj);}
+	  else if (pos>=numItems) {addLast(obj);}
+	  else {
+		 ListNode current = head;
+		 for(int i=1; i< pos; i++) {
+			 current = current.link;
+			 
+		 }
+		 ListNode temp = current.link;
+		 current.link = new ListNode (obj);
+		 current.link.link = temp;
+		 numItems++;
+		 
+		 
+	  }
+	  
 	 }
+  
+public void addFirst(E e ) {
+	ListNode newNode = new ListNode(e);
+	newNode.link = head;
+	head = newNode;
+	numItems++;
+	if (tail == null) {tail =head;}
+}
 
+public void addLast(E e) {
+	ListNode newNode = new ListNode(e);
+	if (tail == null) {head = tail= newNode;}
+	else {
+		tail.link = newNode;
+		tail = tail.link;
+	}
+	numItems++;
+}
   @Override
   public boolean addAll(int pos, Collection< ? extends E> c) throws IndexOutOfBoundsException
   {
 	  //TODO What is even wrong here? Also the type mismatch is weird. Put <E> and then the types aren't the same
 	if (pos < 0 || pos > c.size()) {throw new IndexOutOfBoundsException();}  
-	
+	if (linkedUTD == false) {updateLinked();}
 	boolean isAdded = false;
 
 //	ListNode n = findNode(pos);
@@ -289,19 +337,41 @@ linkedUTD = true;
 //    		isAdded = true;
 //    }
 	int i = 0;
-	E[] arr = (E[]) c.toArray();
-	for (E e:c) {
-		arr[i] =e;
+	E[] arr = (E[]) new  Object[(c.size())];
+//	for (E e:c) {
+//		arr[i] =e;
+//		i++;
+//	}
+	if (c == null) {throw new NullPointerException();}
+	if (c.isEmpty()) {return false;}
+	
+//	ListNode ln=head.link;
+//	while(ln!=tail)
+//	{
+//	 arr[i++]=ln.data;	
+//	 ln=ln.link;
+//	}
+	
+	for (E e: c ) {
+		arr[i] = e;
 		i++;
 	}
-	ListNode temp = findNode(pos);
 	for (E e : arr) {
-		ListNode ln = new ListNode(e);
-		link(temp, ln);
-		temp = ln;
-		//pos++;
-		isAdded = true;
+		add(pos++, e);
+		arrayUTD =false;
 	}
+	
+//	ListNode temp = findNode(pos);
+//	
+//	for (E e : arr) {
+//		ListNode l = new ListNode(e);
+//		link(temp, l);
+//		temp = l;
+//		numItems++;
+//		isAdded = true;
+//		arrayUTD = false;
+//		
+//	}
 //    for (Object o : arr) {
 //    		
 //    }
@@ -375,12 +445,24 @@ linkedUTD = true;
   @Override
   public boolean contains(Object obj)
   {
-    AdaptiveListIterator l = new AdaptiveListIterator();
+	  if (linkedUTD == false) {updateLinked();}
+    
+	  AdaptiveListIterator l = new AdaptiveListIterator();
     while (l.hasNext()){
       if (l.next() == obj){
         return true;
       }
     }
+	  
+//	  ListNode current =head.link;
+//	  
+//	while (current != tail) {
+//		if (current.data == obj || current.data.equals(obj)) {
+//			return true;
+//		}
+//		current = current.link;
+//	}	  
+//	  arrayUTD = false; 
    return false;
   }
 
@@ -499,24 +581,34 @@ linkedUTD = true;
   @Override
   public Object[] toArray()
   {
-    if(theArray == null){return null;}
-
-    E[] temp = (E[]) new Object[numItems];
-    for (int i=0; i < numItems; i++){
-      temp[i] = theArray[i];
-    }
-
-    return temp; // may need to be revised.
+//    if(theArray == null){return null;}
+//
+//    E[] temp = (E[]) new Object[numItems];
+//    for (int i=0; i < numItems; i++){
+//      temp[i] = theArray[i];
+//    }
+//
+//    return temp; // may need to be revised.
+	  
+	  
+	  Object[] arr = new Object[numItems];
+	    ListIterator<E> iter = listIterator();
+	    for(int i = 0; i < numItems; i++)
+	       arr[i] = iter.next();
+	    return arr;
   }
 
   @Override
   public <T> T[] toArray(T[] arr)
   {
-    // TODO When I activate this code, it throws more errors
-//	  for (int i = 0; i < numItems; i++) {
-//			arr[i] = (T) theArray[i];
-//		}
-    return null;//arr; // may need to be revised.
+  
+	  if(arr.length < numItems)
+	       arr = Arrays.copyOf(arr, numItems);
+	    System.arraycopy(toArray(), 0, arr, 0, numItems);
+	    if(arr.length > numItems)
+	       arr[numItems] = null;
+	    return arr;
+	  
   }
 
   @Override
@@ -588,7 +680,7 @@ linkedUTD = true;
     {
    
     	//might also be cur.prev.data
-      if (cur.prev != null || cur.prev !=  head){return true;}
+      if (cur.prev !=  head){return true;}
       return false; // may need to be revised.
     }
 
@@ -597,20 +689,19 @@ linkedUTD = true;
     {
     	
     	
-    	
-    	if (cur.prev != tail || cur.prev != head || cur.prev != null) {//throw new IndexOutOfBoundsException();}
-    
-    	ListNode temporary = cur;
-    
+    	if(linkedUTD == false) {updateLinked();}
+   // 	if (cur.prev != tail || cur.prev != head || cur.prev != null) {throw new NoSuchElementException();}
+    if (hasPrevious() ==false){ throw new NoSuchElementException();}
+    		
+    last = cur;
     cur = cur.prev;
-    	cur.link = temporary;
-    cur.prev = cur.prev.prev;
+    //cur.prev = cur.prev.prev;
   
     	//cur = cur.prev;
-      last = cur.link;
+      
       index--;
-   	}
-      return cur.link.data;
+   	
+      return last.data;
     }
 
     @Override
@@ -641,9 +732,7 @@ linkedUTD = true;
     {
       if (!linkedUTD) {updateLinked();}
       ListNode n = new  ListNode(obj);
-//      n.prev = tail.prev;
-//      n.prev.link =n;
-//      n.link.prev = n;
+
       
       link(cur, n);
       index++;
