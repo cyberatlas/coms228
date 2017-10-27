@@ -17,13 +17,18 @@ import java.util.NoSuchElementException;
 
 public class AdaptiveList<E> implements List<E>
 {
-    public class ListNode{ // private member of outer class
+ 
+	public class ListNode{ // private member of outer class
 
       public E data;        // public members:
       public ListNode link; // used outside the inner class
       public ListNode prev; // used outside the inner class
 
-    public ListNode(E item)
+   /**
+    * Creates a Node with the specified data
+    * @param item the data you want in the node
+    */
+      public ListNode(E item)
     {
       data = item;
       link = prev = null;
@@ -37,11 +42,14 @@ public class AdaptiveList<E> implements List<E>
 
   public E[] theArray;  // the array for storing elements
   private boolean arrayUTD; // true if the array is up-to-date.
-
+/**
+ * Creates the doubly linked list
+ */
   public AdaptiveList()
   {
     clear();
   }
+
 
   @Override
   public void clear()
@@ -56,24 +64,38 @@ public class AdaptiveList<E> implements List<E>
     theArray = null;
   }
 
+/**
+ * Gets the value from linkedUTD to see if the linked list is up to date 
+ * @return linkedUTD 
+ */
   public boolean getlinkedUTD()
   {
     return linkedUTD;
   }
-
+/**
+ * Gets the value from arrayUTD to see if the array is up to day
+ * @return arrayUTD
+ */
   public boolean getarrayUTD()
   {
     return arrayUTD;
   }
-
+/**
+ * Creates a double linked list
+ * @param c the collection that we are adding to the list
+ */
   public AdaptiveList(Collection<? extends E> c)
   {
     clear();
     addAll(c);
   }
 
-  // Removes the node from the linked list.
-  // This method should be used to remove a node from the linked list.
+   
+  /**
+   *Removes the node from the linked list.
+   *This method should be used to remove a node from the linked list. 
+   * @param toRemove the node to remove
+   */
   private void unlink(ListNode toRemove)
   {
     if ( toRemove == head || toRemove == tail )
@@ -82,8 +104,12 @@ public class AdaptiveList<E> implements List<E>
     toRemove.link.prev = toRemove.prev;
   }
 
-  // Inserts new node toAdd right after old node current.
-  // This method should be used to add a node to the linked list.
+  /**
+   * Inserts new node toAdd right after old node current.
+   *  This method should be used to add a node to the linked list.
+   * @param current the current node to add after
+   * @param toAdd Node to add
+   */
   private void link(ListNode current, ListNode toAdd)
   {
     if ( current == tail )
@@ -95,8 +121,10 @@ public class AdaptiveList<E> implements List<E>
     toAdd.prev = current;
     current.link = toAdd;
   }
-
-  private void updateArray() // makes theArray up-to-date.
+/**
+ * Loops through the linked list and updates the array based on it
+ */
+  private void updateArray() 
   {
     if ( numItems < 0 )
       throw new RuntimeException("numItems is negative: " + numItems);
@@ -113,8 +141,10 @@ public class AdaptiveList<E> implements List<E>
     arrayUTD = true;
 
   }
-
-  private void updateLinked() // makes the linked list up-to-date.
+/**
+ * Loops through the array and makes the linked list up to date
+ */
+  private void updateLinked() 
   {
     if ( numItems < 0 )
       throw new RuntimeException("numItems is negative: " + numItems);
@@ -147,7 +177,7 @@ linkedUTD = true;
     }
 
 
-    return count; // may need to be revised.
+    return count; 
   }
 
   @Override
@@ -156,7 +186,7 @@ linkedUTD = true;
 
     if (head.link ==  tail && tail.prev == head){return true;}
 
-    return false; // may need to be revised.
+    return false; 
   }
 
   @Override
@@ -169,7 +199,7 @@ linkedUTD = true;
     arrayUTD = false;
     
     
-    return true; // may need to be revised.
+    return true; 
   }
 
   @Override
@@ -180,12 +210,7 @@ linkedUTD = true;
     Iterator temp = c.iterator();
     if (c ==null) {throw new NullPointerException();}
     if (c.isEmpty()) {return false;}
-//    for (E e : c) {
-////    		if ( e.equals(tail)) {
-////    			break;
-////    		}
-//    		add(e);
-//    }
+
     
     E[] temp2 = (E[]) new Object[c.size()];
     for(E e: c)
@@ -197,61 +222,70 @@ linkedUTD = true;
     {
     	add(e);
     }
-//    while(temp.hasNext()) {
-//    		add((E)temp.next());
-//    }
     arrayUTD = false;
     
-//	 while (temp.hasNext()){
-//      add((E)temp.next());
-//  }
 
-    return true; // may need to be revised.
-  } // addAll 1
+
+    return true;   } 
 
   @Override
   public boolean remove(Object obj)
   {
 
-    //Do I even need this?
-    //ListNode object =  new ListNode(obj);
+    
     ListNode n = head;
     //Loops through the list and checks every element if it equals the object.
     while (n.data != obj){
       n= n.link;
       if (n.data == obj){
-//        n.prev = n.prev.prev;
-//        n.prev.link = n.link;
+
     	  unlink (n);
         numItems--;
        arrayUTD = false;
         return true;
       }
     }
-    return false; // Should only tget to this point if the list does not contain the specified element
+    return false; 
   }
-
-  private void checkIndex(int pos) // a helper method
+/**
+ * Checks to make sure the specified index is valid, if not it throws an error
+ * @param pos the index to check
+ * @throws IndexOutOfBoundsException 
+ */
+  private void checkIndex(int pos) throws IndexOutOfBoundsException// a helper method
   {
     if ( pos >= numItems || pos < 0 )
      throw new IndexOutOfBoundsException(
        "Index: " + pos + ", Size: " + numItems);
   }
 
-  private void checkIndex2(int pos) // a helper method
+  /**
+  * Checks to make sure the specified index is valid, if not it throws an error
+  * @param pos the index to check
+  * @throws IndexOutOfBoundsException 
+  */
+  private void checkIndex2(int pos)throws IndexOutOfBoundsException // a helper method
   {
     if ( pos > numItems || pos < 0 )
      throw new IndexOutOfBoundsException(
        "Index: " + pos + ", Size: " + numItems);
   }
-
-  private void checkNode(ListNode cur) // a helper method
+/**
+ * Makes sure the node is not null and is not the tail
+ * @param cur takes in the current node that we are looking at
+ * @throws RuntimeException
+ */
+  private void checkNode(ListNode cur)throws RuntimeException // a helper method
   {
     if ( cur == null || cur == tail )
      throw new RuntimeException(
       "numItems: " + numItems + " is too large");
   }
-//Give an index and this returns the node before the node you want. gives you 1 node before the one you want
+  /**
+   * Give an index and this returns the node before the node you want. gives you 1 node before the one you want
+   * @param pos the index of the node you want 1 before
+   * @return
+   */
   private ListNode findNode(int pos)   // a helper method
   {
     ListNode cur = head;
@@ -267,15 +301,6 @@ linkedUTD = true;
   @Override
   public void add(int pos, E obj)
   {
-   //int position = 0;
-//	  if ( pos > numItems || pos < 0 ) {throw new IndexOutOfBoundsException();}
-//	 if (!arrayUTD) {updateArray();}
-//	 if (pos <= numItems) {
-//   AdaptiveListIterator l = new AdaptiveListIterator(pos);
-//   l.add(obj);
-//   arrayUTD = false;
-//   numItems++;
-//  }
 	  
 	  if (pos ==0) {addFirst(obj);}
 	  else if (pos>=numItems) {addLast(obj);}
@@ -294,7 +319,10 @@ linkedUTD = true;
 	  }
 	  
 	 }
-  
+  /**
+   * The code called to add a node to the first part of a list
+   * @param e data to add
+   */
 public void addFirst(E e ) {
 	ListNode newNode = new ListNode(e);
 	newNode.link = head;
@@ -302,7 +330,10 @@ public void addFirst(E e ) {
 	numItems++;
 	if (tail == null) {tail =head;}
 }
-
+/**
+ * Used to add a node to the end of a list 
+ * @param e data to add
+ */
 public void addLast(E e) {
 	ListNode newNode = new ListNode(e);
 	if (tail == null) {head = tail= newNode;}
@@ -315,42 +346,17 @@ public void addLast(E e) {
   @Override
   public boolean addAll(int pos, Collection< ? extends E> c) throws IndexOutOfBoundsException
   {
-	  //TODO What is even wrong here? Also the type mismatch is weird. Put <E> and then the types aren't the same
 	if (pos < 0 || pos > c.size()) {throw new IndexOutOfBoundsException();}  
 	if (linkedUTD == false) {updateLinked();}
 	boolean isAdded = false;
 
-//	ListNode n = findNode(pos);
-//	int numAdded = 0;
-//	while (c.size() != numAdded) {
-	//	link(n, )
-	//}
-	
-	//    AdaptiveListIterator q = new AdaptiveListIterator(pos);
-//    ListIterator<E> I  =  listIterator();
-//
-//    //if (!I.hasNext() ){return false; }
-//
-//    while (I.hasNext() && !I.next().equals(head) && !I.next().equals(tail)){
-//    		E temp=	(E)I.next(); 
-//    		q.add(temp);
-//    		isAdded = true;
-//    }
 	int i = 0;
 	E[] arr = (E[]) new  Object[(c.size())];
-//	for (E e:c) {
-//		arr[i] =e;
-//		i++;
-//	}
+
 	if (c == null) {throw new NullPointerException();}
 	if (c.isEmpty()) {return false;}
 	
-//	ListNode ln=head.link;
-//	while(ln!=tail)
-//	{
-//	 arr[i++]=ln.data;	
-//	 ln=ln.link;
-//	}
+
 	
 	for (E e: c ) {
 		arr[i] = e;
@@ -361,22 +367,7 @@ public void addLast(E e) {
 		arrayUTD =false;
 	}
 	
-//	ListNode temp = findNode(pos);
-//	
-//	for (E e : arr) {
-//		ListNode l = new ListNode(e);
-//		link(temp, l);
-//		temp = l;
-//		numItems++;
-//		isAdded = true;
-//		arrayUTD = false;
-//		
-//	}
-//    for (Object o : arr) {
-//    		
-//    }
-    return isAdded; // may need to be revised.
-  } // addAll 2
+    return isAdded; }
 
   @Override
   public E remove(int pos)
@@ -384,11 +375,11 @@ public void addLast(E e) {
 	  if (!linkedUTD) {updateLinked();}
 	  checkIndex2(pos);
     ListNode n = findNode(pos).link;
-    //n.data = I.next();
+    
     E data = n.data;
     unlink(n);
     arrayUTD = false;
-    return data; // may need to be revised.
+    return data; 
   }
 
   @Override
@@ -398,11 +389,9 @@ public void addLast(E e) {
 	if (!arrayUTD) {updateArray();}
 	checkIndex(pos);
 	
-//    AdaptiveListIterator I = new AdaptiveListIterator(pos);
-//    ListNode n = new ListNode(I.next());
-//    n.data =  I.next();
 
-    return theArray[pos]; // may need to be revised.
+
+    return theArray[pos]; 
   }
 
   @Override
@@ -416,13 +405,15 @@ public void addLast(E e) {
     theArray[pos] = obj;
     linkedUTD = false;
    
-    return data; // may need to be revised.
+    return data; 
   }
 
-  // If the number of elements is at most 1, the method returns false.
-  // Otherwise, it reverses the order of the elements in the array
-  // without using any additional array, and returns true.
-  // Note that if the array is modified, then linkedUTD needs to be set to false.
+ /**
+  *   If the number of elements is at most 1, the method returns false.
+  *   Otherwise, it reverses the order of the elements in the array without using any additional array, and returns true.
+  *   Note that if the array is modified, then linkedUTD needs to be set to false.
+  * @return reversed array
+  */
   public boolean reverse()
   {
 	  if(!arrayUTD) {updateArray();}
@@ -434,10 +425,6 @@ public void addLast(E e) {
     	theArray [ theArray.length -i - 1 ] = temp;
     	
     }
-//    AdaptiveListIterator l = new AdaptiveListIterator(numItems);
-//    for (int i=0; i < numItems; i++){
-//      theArray[i] = l.previous();//gets the one before and moves the cursor
-//    }
     linkedUTD =false;
     return true;
   }
@@ -454,15 +441,6 @@ public void addLast(E e) {
       }
     }
 	  
-//	  ListNode current =head.link;
-//	  
-//	while (current != tail) {
-//		if (current.data == obj || current.data.equals(obj)) {
-//			return true;
-//		}
-//		current = current.link;
-//	}	  
-//	  arrayUTD = false; 
    return false;
   }
 
@@ -483,9 +461,7 @@ public void addLast(E e) {
 
     }
 
-  return true; // may need to be revised.
-  } // containsAll
-
+  return true; }
 
   @Override
   public int indexOf(Object obj) 
@@ -497,17 +473,9 @@ public void addLast(E e) {
 	for (current = head.link; current != tail; current = current.link, index++) {
 		if (current.data == obj || current.data.equals(obj)) {return index;}
 	}
-//    AdaptiveListIterator I = new AdaptiveListIterator();
-//    int index = 0;
-//    
-//    
-//    while(I.hasNext()){
-//      if (I.next().equals( obj)){return index;}
-//      index++;
-//      
-//    }
 
-    return -1; // Returns -1 if it does not contain the object
+
+    return -1; 
   }
 
   @Override
@@ -527,43 +495,27 @@ public void addLast(E e) {
   @Override
   public boolean removeAll(Collection<?> c)
   {
-    // TODO How come this does not work?
-	  //returning true no matter what
-	  
-	  
+    
 	  boolean isChanged = false;
 	  ListIterator <E> l = listIterator();
-//	 // Iterator temp  = c.iterator();
-//		while (c.hasNext()) {
-//			if (l.contains(c.next())) {
-//				l.remove();
-//				isChanged = true;
-//			}
-//		}
+
 		while (l.hasNext()) {
 			if (c.contains(l.next())) {
 				l.remove();
 				isChanged = true; 
 			}
 		}
-//	  
-    return isChanged; // may need to be revised.
+	  
+    return isChanged; 
   }
 
   @Override
   public boolean retainAll(Collection<?> c)
   {
-    // TODO- Accomplish by looping throgh the list array and checking if it has what is in the collection look at other looped stuff for reference
-	//TODO USES COLLECTIONS FIXXXXXXXXCXXXXXXXXXXXXXXX
-	  //ListNode l;
-	  
-	//for () {}
+ 
     Iterator temp = c.iterator();
     AdaptiveListIterator l = new AdaptiveListIterator();
-//    for (int i =0; i < numItems; i++) {
-//    		if ()
-//    	
-//    }
+
     
     for (int i=0; i<numItems; i++){
       if (!c.contains(l.next())){
@@ -571,25 +523,12 @@ public void addLast(E e) {
       }
     }
 
-    return true; // may need to be revised.
-  }
+    return true; }
 
-  /**
-   *
-   * @return instance of array
-   */
+  
   @Override
   public Object[] toArray()
   {
-//    if(theArray == null){return null;}
-//
-//    E[] temp = (E[]) new Object[numItems];
-//    for (int i=0; i < numItems; i++){
-//      temp[i] = theArray[i];
-//    }
-//
-//    return temp; // may need to be revised.
-	  
 	  
 	  Object[] arr = new Object[numItems];
 	    ListIterator<E> iter = listIterator();
@@ -651,28 +590,26 @@ public void addLast(E e) {
     @Override
     public boolean hasNext()
     {
-      //if (cur.link != null || cur.link != tail || cur.link != head){return true;}
+      
     if (cur.link == null) {return false;}  
-    	return true; // may need to be revised.
+    	return true; 
     }
 
     @Override
     public E next() throws NoSuchElementException
     {
-      //Sets the previous node to the next, sets the next node to the one after.
-      //Returns the next's data
+      
     if (!hasNext()) {throw new NoSuchElementException(); }  
    
     
     ListNode temporary = cur;
     cur  = cur.link;
     cur.prev = temporary;
-      //cur.link = cur.link.link;
+      
       index++;
-//      cur = cur.link.link;
+
       last = cur.prev;
-      return cur.data; // may need to be revised.
-    
+      return cur.data;     
     }
 
     @Override
@@ -690,16 +627,12 @@ public void addLast(E e) {
     	
     	
     	if(linkedUTD == false) {updateLinked();}
-   // 	if (cur.prev != tail || cur.prev != head || cur.prev != null) {throw new NoSuchElementException();}
+   
     if (hasPrevious() ==false){ throw new NoSuchElementException();}
     		
     last = cur;
-    cur = cur.prev;
-    //cur.prev = cur.prev.prev;
-  
-    	//cur = cur.prev;
-      
-      index--;
+    cur = cur.prev;     
+    index--;
    	
       return last.data;
     }
@@ -740,7 +673,7 @@ public void addLast(E e) {
       
       cur = cur.link;
       arrayUTD =false;
-    } // add
+    } 
 
     @Override
     public void set(E obj)
@@ -749,8 +682,8 @@ public void addLast(E e) {
 
     	last.data = obj;
     	arrayUTD =false;
-    } // set
-  } // AdaptiveListIterator
+    } 
+  }
 
   @Override
   public boolean equals(Object obj)
@@ -770,7 +703,7 @@ public void addLast(E e) {
     }
     if ( iter.hasNext() ) return false;
     return true;
-  } // equals
+  }
 
   @Override
   public Iterator<E> iterator()
@@ -809,7 +742,10 @@ public void addLast(E e) {
    String eol = System.getProperty("line.separator");
    return toStringArray() + eol + toStringLinked();
   }
-
+/**
+ *  returns array of elements as a string 
+ * @return array as string
+ */
   public String toStringArray()
   {
     String eol = System.getProperty("line.separator");
@@ -836,7 +772,11 @@ public void addLast(E e) {
     return toStringLinked(null);
   }
 
-  // iter can be null.
+  /**
+   * Returns linked list as a string 
+   * @param iter iterator to loop through the list with
+   * @return the string made from the linked list
+   */
   public String toStringLinked(ListIterator<E> iter)
   {
     int cnt = 0;
