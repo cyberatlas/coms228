@@ -221,6 +221,7 @@ public class EntryTree<K, V> {
                         return true;
                     }
                     try {
+                        n.value =aValue;
                         n = n.child;
                         //continue;
                     } catch (NullPointerException e) {
@@ -325,17 +326,18 @@ public class EntryTree<K, V> {
         }
     }
 
-    //Did I write this? What does it even do?
-    private boolean check (K[] keyarr[], int i, Node n ){
-
-        if (n.value == keyarr[i]){
-            i++;
-        }
-        if(n.child.value == keyarr[i] ) {
-            i++;
-        }
-        if(n.next){}
-    }
+//    //Did I write this? What does it even do?
+//    private boolean check (K[] keyarr[], int i, Node n ){
+//
+//        if (n.value == keyarr[i]){
+//            i++;
+//        }
+//        if(n.child.value == keyarr[i] ) {
+//            i++;
+//        }
+//        if(n.next){}
+//        return true
+//    }
 
 }
 
