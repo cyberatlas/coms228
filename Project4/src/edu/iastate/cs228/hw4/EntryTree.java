@@ -51,25 +51,25 @@ public class EntryTree<K, V> {
         @Override
         public EntryNode<K, V> child() {
             // TODO Auto-generated method stub
-            return null;
+            return child;
         }
 
         @Override
         public EntryNode<K, V> next() {
             // TODO Auto-generated method stub
-            return null;
+            return next;
         }
 
         @Override
         public EntryNode<K, V> prev() {
             // TODO Auto-generated method stub
-            return null;
+            return prev;
         }
 
         @Override
         public K key() {
             // TODO Auto-generated method stub
-            return null;
+            return key;
         }
 
         @Override
@@ -94,41 +94,6 @@ public class EntryTree<K, V> {
         ErrorHandler(keyarr);
         Node n = root;
         return searchHelper(keyarr, 0, n);
-
-
-//        if (keyarr == null || keyarr.length == 0) {
-//            return null;
-//        }
-//
-//        Node n = root;
-//
-//        for (int i = 0; i < keyarr.length; i++) {
-//            if (n.child != null) {
-//                if (n.child.key == keyarr[i]) {
-//                    n.child();
-//                } else {
-//                    while (n.child).next
-//                }
-//            }
-//        }
-//
-//
-//        int i = 0;
-//
-//        if (n.child() != null) {
-//            n.child();
-//        }
-//
-//        while (n.child.next != null) {
-//            if (keyarr[i]
-//        }
-//
-//        if ()
-//            // TODO
-//            return null;
-
-    //return null;
-
     }
 
     //TODO Create new private method to call itself recursively. Then do the following 3 things in that new method
@@ -277,19 +242,40 @@ public class EntryTree<K, V> {
      * an example output file.
      */
     public void showTree() {
-        System.out.println("null -> null");
-        showHelper(root, 0, false);
+//        System.out.println("null -> null");
+//        showHelper(root, 0, false);
+    	
+    	//Try 2
+    	
     }
+    private void shower(Node n, int indent) {
+    		if (n.child==null) {
+    			return;
+    		}
+    		else {
+    			System.out.println(n.child.key);
+    			shower(n.child, indent);
+    			if (n.next != null) {
+    				shower(n.next, indent);
+    			}
+    		}
+    		
+    }
+    private void helper(){
+    		System.out.println("\t");
+    		
+    }
+    	
     private void showHelper(Node n, int spaces, boolean printedChild){
         //if the child is not equal to null and we haven't printed that child yet
-        baseCase: if (!(n.child.equals(null))&& printedChild == false){
+        if (!(n.child ==null)&& printedChild == false){
             //Print the spaces, increment the spacing by 1 then print the node and it's value
             spacing(spaces);
             spaces++;
             System.out.print(n.child.key + " -> " + n.child.value);
             showHelper(n.child, spaces, false);
         }
-        else if(!(n.next.equals(null))){
+        else if(!(n.next == null)){
                 //Don't need to increment the space because you are keeping track of the spacing as you are traversing through
                 spacing(spaces);
                 System.out.print(n.child.key + " -> " + n.child.value);
@@ -298,12 +284,13 @@ public class EntryTree<K, V> {
         }
         //When you call this case, you will be near the end of the last next, this is where we say the child has been printed and work back up
         //Make sure the the parent is not the root.
-         else if (!(n.parent.equals(null))){
+         else if (!(n.parent == null)){
             //Going back up, decrement the spaces
             spaces--;
             //We are printing the parent, with less spaces, and we already printed the child
             showHelper(n.parent, spaces, true);
         }
+//         else if (!)
 
     }
     private void spacing(int numPrevSpaces){
