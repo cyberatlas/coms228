@@ -27,8 +27,8 @@ public class Tester {
         test.add(key3, value3);
         test.showTree();
 
-//		test.add(key4, value4);
-//		test.showTree();
+		test.add(key4, value4);
+	   	test.showTree();
     }
 
 }

@@ -3,7 +3,7 @@ package edu.iastate.cs228.hw4;
 /**
  * An interface for describing basic getter functionality for a node
  * 
- * @author XXXXX
+ * @author Alexander Stevenson
  * 
  * @param <K>
  * @param <V>

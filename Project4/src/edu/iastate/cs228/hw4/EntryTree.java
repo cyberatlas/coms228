@@ -7,9 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.File;
 
 /**
- * @author XXXXX
+ * @author Alexander Stevenson
  *         <p>
- *         An entry tree class Add Javadoc comments to each method
+ *         An entry tree class 
  */
 public class EntryTree<K, V> {
 	/**
@@ -24,8 +24,9 @@ public class EntryTree<K, V> {
 	 * both search() and prefix() to avoid duplication of code.
 	 */
 	protected int prefixlen;
+	// Instantiated as root just in case prefix does not find anything
 	private Node current;
-	
+
 	protected class Node implements EntryNode<K, V> {
 		protected Node child; // link to the first child node
 		protected Node parent; // link to the parent node
@@ -82,6 +83,7 @@ public class EntryTree<K, V> {
 
 	public EntryTree() {
 		root = new Node(null, null);
+		current = root;
 	}
 
 	/**
@@ -89,31 +91,34 @@ public class EntryTree<K, V> {
 	 * tree contains no entry with the key sequence.
 	 *
 	 * @param keyarr
-	 * @return
+	 * @return value of entry with the key sequence
 	 */
 	public V search(K[] keyarr) throws NullPointerException {
+		if (keyarr == null || keyarr.length==0) {return null;}
 		ErrorHandler(keyarr);
 		Node n = root;
 		return searchHelper(keyarr, 0, n);
 	}
 
-	// TODO Create new private method to call itself recursively. Then do the
-	// following 3 things in that new method
-	// What parameters will you need to pass recursively?
-	// keyarr[], index, current node
-
+	
+/**
+ * 	 Private method that calls itself recursively. Then do the
+ * @param keyarr array of keys that we are searching through
+ * @param i our location in the key array
+ * @param n the node we are currently at
+ * @return
+ */
 	private V searchHelper(K[] keyarr, int i, Node n) {
 
-		// TODO 1 make sure we're not on the last node, if we are, return the node value
+		// Make sure we're not on the last node, if we are, return the node value
 		// if n's key is the last key in the key array, it exists, return it's value
 		if (n.key().equals(keyarr[keyarr.length - 1])) {
 			return n.value();
 		}
 
-		// TODO 2 if the child is null, return null or throw an error
+		// If the child is null, return null or throw an error
 		// if we have to go to a child, and the value is wrong then check the siblings.
-		// If the the next sibling is null that means the key wansn't found. Throw
-		// error.
+		// If the the next sibling is null that means the key wansn't found throw error.
 		// The only time this is true when the child key does not equal the array key
 		else if (!(n.child().key().equals(keyarr[i]))) {
 			// check siblings using a while loop
@@ -127,12 +132,13 @@ public class EntryTree<K, V> {
 					return searchHelper(keyarr, i++, temp.next);
 
 				}
-				// TODO is there something in here to check to amke sure we are not dealing with
-				// a childless and siblingless node
-				// Do I need that?
-				// increments
+				
+			
+				// increments the location that we are considering
 				temp = temp.next;
 			}
+			if (!(n.child.key.equals(keyarr[i])) && !(n.next.key.equals(keyarr[i]))) {return null;}
+			
 		}
 
 		// happens only when the child key equals the array key, runs again
@@ -146,25 +152,25 @@ public class EntryTree<K, V> {
 	 * on the path from the root to a node. The length of the returned array is the
 	 * length of the longest prefix.
 	 *
-	 * @param keyarr
-	 * @return
+	 * @param keyarr array of keys to look through
+	 * @return the keys from the tree in the key array
 	 */
 	public K[] prefix(K[] keyarr) {
-		// TODO
 		ArrayList<K> list = new ArrayList();
 		Node n = root;
-		list.add(n.key);
+		if (keyarr == null || keyarr.length == 0) {return null;}
 		int index = 0;
 		while (index < keyarr.length) {
 			// for (int i =0; i< keyarr.length; i++){
 			// Checks to make sure there are no children
 			if (n.child == null || !(n.child.key.equals(keyarr[index]))) {
 				if (n.next == null) {
+
 					return (K[]) list.toArray();
 				}
 				// The following code only executes if the next is not null
 				if (!(n.next.key.equals(keyarr[index])))
-					
+
 				{
 					// If the one after the next is not null, return the prefix
 					if (n.next.next == null) {
@@ -176,7 +182,7 @@ public class EntryTree<K, V> {
 				}
 				if (n.next.key.equals(keyarr[index])) {
 					n = n.next;
-					current =n;
+					current = n;
 					list.add(n.key);
 					index++;
 					continue;
@@ -192,11 +198,8 @@ public class EntryTree<K, V> {
 
 		}
 
-		K[] dummy = null;
-		return dummy;
-		// TODO
-		// Hint: An array of the same type as keyarr can be created with
-		// Arrays.copyOf().
+		
+		return (K[]) list.toArray();
 
 	}
 
@@ -210,116 +213,79 @@ public class EntryTree<K, V> {
 	 * prefix path and suffix path together by making the node S a child of the node
 	 * P, and returns true.
 	 *
-	 * @param keyarr
-	 * @param aValue
-	 * @return
+	 * @param keyarr array of keys to make sure ar ein the tree
+	 * @param aValue the value of the last key in the tree
+	 * @return true if we added the key array and the value
 	 */
 	public boolean add(K[] keyarr, V aValue) {
-		// TODO check
-		
-		Node p = current;
-		int x = 0;
-		if (prefix(keyarr).length ==0 ) {
-			//just add 
-		} 
-		
+		// If prefix is 0 that means none of the words match, just add them all as children
+		if (keyarr ==null || keyarr.length == 0) {return false;}
+		ErrorHandler(keyarr);
+		if (prefix(keyarr).length == 0) {
+			for (int i = 0; i < keyarr.length; i++) {
+
+
+
+				Node temp = new Node(keyarr[i], null);
+				current.child = temp;
+				temp.parent = current;
+				current = temp;
+			}
+			current.value = aValue;
+			return true;
+		}
+
 		if (prefix(keyarr).length == keyarr.length) {
-			p.value =aValue;
-			
-		}
-		for (int i = (keyarr.length - prefix(keyarr).length);i < keyarr.length;i++ ) {
-			Node temp = new Node(keyarr[i],null);
-			current.child = temp;
-			current = temp;
-		}
-		
-		
-		
+			current.value = aValue;
+			return true;
 
-//		mainLoop: for (int i = 0; i < keyarr.length; i++) {
-//
-//			// Checks if the child is null. If the child is null, check the siblings
-//			if (n.child == null) {
-//				n.child = new Node(keyarr[i], null);
-//
-//			}
-//
-//		}
+		} else {
+			for (int i = ( prefix(keyarr).length); i < keyarr.length; i++) {
 
-		return false;
+				Node temp = new Node(keyarr[i], null);
+				
+				if (current.child != null) {
+					Node child = current.child;
+					while (child.next != null) {
+						child = child.next;
+					}
+					
+					child.next = temp;
+					temp.prev = child;
+					temp.parent = current;
+					current = temp;
+					
+
+				} 
+				if(i >= keyarr.length)
+				{
+					current.child = temp;
+					temp.parent = current;
+					current = temp;
+				}
+			}
+			current.value = aValue;
+			return true;
+		}
+
+		
 	}
-//	private Node nodeFinder( K[] checkarr) {
-//		Node goTo = root; 
-//		ArrayList<K> list = new ArrayList();
-//		Node n = root;
-//		list.add(n.key);
-//		int index = 0;
-//	
-//	}
-	// Try 1
-	// loop1:
-	// for (int i = 0; i < keyarr.length; i++) {
-	// if (n.key != null) {
-	// //if1: is labeling the line so it's easier to continue the loop
-	//
-	// if (n.key == keyarr[i]) {
-	// //If it is at length-1 then it is at the end of the key array and it is time
-	// to save the value
-	// if (i == keyarr.length - 1) {
-	// n.value = aValue;
-	// return true;
-	// }
-	// try {
-	// n.value =aValue;
-	// n = n.child;
-	// //continue;
-	// } catch (NullPointerException e) {
-	// System.out.println(e);
-	// }
-	// }
-	// }
-	// else {
-	// while (n.next() != null) {
-	// if (n == keyarr[i]) {
-	// n.next();
-	// //Goes back to the first loop
-	// continue loop1;
-	// } else {
-	// continue;
-	// } //Runs the while loop again checking for siblings
-	// }
-	// //created a new Node, assuming null is it's new value
-	// Node n2 = null;
-	// n.next = n2;
-	// n2.key = keyarr[i];
-	// n2.parent = n.parent;
-	//
-	// while (i < keyarr.length) {
-	// Node temp = null;
-	// n2.child = n;
-	// temp.key = keyarr[i];
-	// n2 = temp;
-	// i++;
-	// }
-	// return true;
-	//
-	// }
-	// }
-	//
-	//
-	// return false;
-	// }
+	
 
 	/**
 	 * Removes the entry for a key sequence from this tree and returns its value if
 	 * it is present. Otherwise, it makes no change to the tree and returns null.
 	 *
-	 * @param keyarr
-	 * @return
+	 * @param keyarr the array of keys to look through
+	 * @return the value of the key removed
 	 */
 	public V remove(K[] keyarr) {
 		// TODO
-		return null;
+		if (keyarr == null || keyarr.length ==0) {
+		return null;}
+		V val = current.value;
+		current.value = null;
+		return val;
 	}
 
 	/**
@@ -327,92 +293,51 @@ public class EntryTree<K, V> {
 	 * example output file.
 	 */
 	public void showTree() {
-		System.out.println("null -> null");
-		showHelper(root, 0, false);
-
-		// Try 2
+		// System.out.println("null -> null");
+		showHelper(root, 0);
+	}
+/**
+ * Helper method to show tree, recursively goes through the tree and adds spaces where needed and prints key and value
+ * @param n
+ * @param spaces
+ */
+	private void showHelper(Node n, int spaces) {
+		System.out.println(spacing(spaces) + n.key + "=>" + n.value);
+		if (n.child != null) {
+			int nextSpaces = spaces + 1;
+			showHelper(n.child, nextSpaces);
+		}
+		if (n.next != null) {
+			showHelper(n.next, spaces);
+		}
 
 	}
-
-	// private void shower(Node n, int indent) {
-	// if (n.child==null) {
-	// return;
-	// }
-	// else {
-	// System.out.println(n.child.key);
-	// shower(n.child, indent);
-	// if (n.next != null) {
-	// shower(n.next, indent);
-	// }
-	// }
-	//
-	// }
-	// private void helper(){
-	// System.out.println("\t");
-	//
-	// }
-	//
-	private void showHelper(Node n, int spaces, boolean printedChild) {
-		// if the child is not equal to null and we haven't printed that child yet
-		if (!(n.child == null) && printedChild == false) {
-			// Print the spaces, increment the spacing by 1 then print the node and it's
-			// value
-			spacing(spaces);
-			spaces++;
-			System.out.print(n.child.key + " -> " + n.child.value);
-			showHelper(n.child, spaces, false);
-		} else if (!(n.next == null)) {
-			// Don't need to increment the space because you are keeping track of the
-			// spacing as you are traversing through
-			spacing(spaces);
-			System.out.print(n.child.key + " -> " + n.child.value);
-			// Printed is false because you're in a different dimentsion of the array
-			showHelper(n.next, spaces, false);
-		}
-		// When you call this case, you will be near the end of the last next, this is
-		// where we say the child has been printed and work back up
-		// Make sure the the parent is not the root.
-		else if (!(n.parent == null)) {
-			// Going back up, decrement the spaces
-			spaces--;
-			// We are printing the parent, with less spaces, and we already printed the
-			// child
-			showHelper(n.parent, spaces, true);
-		}
-		// else if (!)
-
-	}
-
-	private void spacing(int numPrevSpaces) {
-		String s = ("\t");
+/**
+ * Private helper method that increments the spaces for showTree helper. 
+ * @param numPrevSpaces
+ * @return string of spaces
+ */
+	private String spacing(int numPrevSpaces) {
+		String s = "";
 		for (int i = 0; i < numPrevSpaces; i++) {
-			// In the example it increments by 1 tab
-			s.concat("\t");
+			// In the example it increments by 1 tab, this is slightly less so it is easier to read
+			s = s + "  ";
 		}
 		// when the string is made with the appropriate number of tabs print the string
-		System.out.print(s);
+		return s;
 	}
+/**
+ * Private helper method that makes sure nothing in the key array is null
+ * @param keyarr
+ */
+	private void ErrorHandler(K[] keyarr) {
 
-	public void ErrorHandler(K[] keyarr) {
-
-		for (K E : keyarr) {
-			if (E == null) {
-				throw new NullPointerException();
+		if(keyarr != null) {
+			for (K E : keyarr) {
+				if (E == null) {
+					throw new NullPointerException();
+				}
 			}
 		}
 	}
-
-	// //Did I write this? What does it even do?
-	// private boolean check (K[] keyarr[], int i, Node n ){
-	//
-	// if (n.value == keyarr[i]){
-	// i++;
-	// }
-	// if(n.child.value == keyarr[i] ) {
-	// i++;
-	// }
-	// if(n.next){}
-	// return true
-	// }
-
 }
