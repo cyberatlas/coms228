@@ -22,6 +22,9 @@ public class DFS
 
     public static <V> LinkedStack<V> depthFirstSearch(DiGraph<V> aGraph)
     { // TODO
+    	
+    	//TODO color all vertex green
+    	//for each vertex check if green, if so  create linkedstack, create hashmap color, and create hashmap pred? and call visitDFS on it.
     	return null;
     }
 
@@ -42,9 +45,80 @@ public class DFS
     protected static <V> boolean visitDFS(DiGraph<V> aGraph, V s,
             HashMap<V, String> color, HashMap<V, V> pred, LinkedStack<V> topoOrder)
     { // TODO
-    
-    	return false;
+    	//TODO Color vertex black to indicate that it has been visited/added
+    	//TODO check all edges that lead away from this vertex (ie probably call visitDFS on them or helper method)
     	
-    } 
+    	// color.put(s, "red"); // reached but not processed
+    	 
+    	   LinkedStack<V> nodestack = new LinkedStack<V>();
+    	   LinkedStack<Iterator<Edge<V,Integer>>> edgestack = new LinkedStack<Iterator<Edge<V,Integer>>>();
+    	   Iterator<Edge<V,Integer>> siter = aGraph.adjacentTo(s).iterator();
+    	   nodestack.push(s);
+    	   edgestack.push(siter);
+    	   while ( ! nodestack.isEmpty() )
+    	   { V c = nodestack.peek();
+    	     Iterator<Edge<V,Integer>> citer = edgestack.peek();
+    	     if ( citer.hasNext() )
+    		{ V w = citer.next().getVertex();
+    		  if ( color.get(w).equals( "green" ) )
+    		  { color.put(w, "red"); // reached but not processed
+    		    pred.put(w, c);
+    	         Iterator<Edge<V,Integer>> witer = aGraph.adjacentTo(w).iterator();
+    	         nodestack.push(w);
+    	         edgestack.push(witer);
+    	         return false;
+    		  }
+    		}
+    		else
+    		{ color.put(c, "black"); // processed
+    		topoOrder.push(c);  
+    		nodestack.pop(); // vertex c is removed
+    	       edgestack.pop(); // its edge iterator is removed
+    		}
+    	   }
+    	return true;
+    	
+    }     
+    
+    
+    
+    //Week 12 stuff
+ // It visits the vertices of a graph
+    // in depth-first traversal, and produces a depth-first forest.
+    /* An iterative depth-first search that is supposed to produce
+    the same depth-first search tree as the recursive depth-first search. */
+ //TODO Make this work on a directed list
+//    private static <V> void visitDFS(DiGraph<V> aGraph, V s,
+//         HashMap<V, String> color, HashMap<V, V> pred)
+// {
+//  // color.put(s, "red"); // reached but not processed
+// 
+//   LinkedStack<V> nodestack = new LinkedStack<V>();
+//   LinkedStack<Iterator<Edge<V,Integer>>> edgestack = new LinkedStack<Iterator<Edge<V,Integer>>>();
+//   Iterator<Edge<V,Integer>> siter = aGraph.adjacentTo(s).iterator();
+//   nodestack.push(s);
+//   edgestack.push(siter);
+//   while ( ! nodestack.isEmpty() )
+//   { V c = nodestack.peek();
+//     Iterator<Edge<V,Integer>> citer = edgestack.peek();
+//     if ( citer.hasNext() )
+//	{ V w = citer.next().getVertex();
+//	  if ( color.get(w).equals( "green" ) )
+//	  { color.put(w, "red"); // reached but not processed
+//	    pred.put(w, c);
+//         Iterator<Edge<V,Integer>> witer = aGraph.adjacentTo(w).iterator();
+//         nodestack.push(w);
+//         edgestack.push(witer);
+//	  }
+//	}
+//	else
+//	{ color.put(c, "black"); // processed
+//	topoOrder.push(c);  
+//	nodestack.pop(); // vertex c is removed
+//       edgestack.pop(); // its edge iterator is removed
+//	}
+//   }
+// }
+
     
 }
