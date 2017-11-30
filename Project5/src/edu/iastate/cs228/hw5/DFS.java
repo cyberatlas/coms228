@@ -52,13 +52,16 @@ public class DFS
           for ( V w : aGraph.vertices() )
             if ( color.get(w).equals( "green" ) )
     	{
-              visitDFS(aGraph, w, color, pred, topoOrder);
+              if (visitDFS(aGraph, w, color, pred, topoOrder)) {
+            	  return topoOrder;
+              }
+//              if (!visitDFS(aGraph, w, color, pred, topoOrder)) {return null;}
           //    if (visitDFS(aGraph, w, color, pred, topoOrder) == false) {return null;}
 //              System.out.println();
     	}
 
 //          System.out.println("\nDFS Forest");  // This display part is omitted in class.
-          for ( V w : aGraph.vertices() )
+//          for ( V w : aGraph.vertices() )
 //           if ( pred.get(w) == null )
 //             System.out.println( "The root of a DFS tree: " + w.toString() );
 //           else 
@@ -67,12 +70,14 @@ public class DFS
 //    	       + "->" +  w.toString() );
 
 //          System.out.println( "Topological Sorting:");
-          while ( ! topoOrder.isEmpty() ) {
+//          while ( ! topoOrder.isEmpty() ) {
 //             System.out.print(" " +  topoOrder.pop().toString() );
 //          System.out.println();
-        }
+        //}
+          
+         
     
-    	return topoOrder;
+    	return null;
     }
 
     // This method implements an iterative depth-first search algorithm for
@@ -89,7 +94,8 @@ public class DFS
     // topoOrder. If the graph has no cycles (the execution reaches the end of the method),
     // then the method returns true.
 
-    protected static <V> boolean visitDFS(DiGraph<V> aGraph, V s,
+    @SuppressWarnings("unchecked")
+	protected static <V> boolean visitDFS(DiGraph<V> aGraph, V s,
             HashMap<V, String> color, HashMap<V, V> pred, LinkedStack<V> topoOrder)
     { // TODO
     	//TODO Color vertex black to indicate that it has been visited/added
@@ -108,7 +114,7 @@ public class DFS
     	     if ( citer.hasNext() )
     		{ V w = citer.next().getVertex();
     		  	if(color.get(w).equals("red")) {return false;}
-    		  	else if ( color.get(w).equals( "green" ) )  
+    		  	if ( color.get(w).equals( "green" ) )  
     			  
     		  { color.put(w, "red"); // reached but not processed
     		    pred.put(w, c);
@@ -124,7 +130,16 @@ public class DFS
     		nodestack.pop(); // vertex c is removed
     	       edgestack.pop(); // its edge iterator is removed
     		}
-    	   } 
+    	   }
+    	   for (V z : aGraph.vertices()) {
+    		   if (color.get(z).equals("black")) {
+    			   continue;
+    		   }
+    		   else {
+    			   return false;
+    		   }
+    	   }
+    	   
     	return true;
     	
     }     
