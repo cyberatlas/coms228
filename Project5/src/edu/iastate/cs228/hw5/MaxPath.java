@@ -61,11 +61,45 @@ public class MaxPath {
     			// And it sets the value to 0 for each vertex in the dist map, and sets the value to null
     			// for each vertex in the pred map.
     	HashMap<V,Integer> dist = new HashMap<V,Integer>();
-//    	HashMap<V,V> pred = new HashMap<V,V>();
+   	HashMap<V,V> pred = new HashMap<V,V>();
     	
-    	while (topoOrder.pop())
+   for (V w: G.vertices()) {
+	   dist.put(w, 0);
+	   pred.put(w,  null);
+   }
+   
+   Integer score = 0;
+   V end= null;
+   
+  while(!topoOrder.isEmpty()) {
+	  V u = topoOrder.pop();
+	  
+	 for (Edge<V, Integer> v : G.adjacentTo(u)) {
+		 int distU  = dist.get(u);
+		 int distV = dist.get(v.getVertex());
+		 
+		 if (v.getCost() + distU > distV) {
+			 dist.put(v.getVertex(), v.getCost() + distU);
+			 pred.put(v.getVertex(),u);
+		 }
+		 
+		 if (dist.get(v.getVertex()) > score){
+			 score = dist.get(v.getVertex());
+			 end = v.getVertex();
+		 }
+	 }
+  }
     	
-    	
-    	return null;
+    	V toAdd = end;
+    	while(true) {
+    		maxPath.push(toAdd);
+    		toAdd = pred.get(toAdd);
+    		
+    		if (pred.get(toAdd) == (null)){
+    			maxPath.push(toAdd);
+    			break;
+    		}
+    	}
+    	return score;
     }
 }
