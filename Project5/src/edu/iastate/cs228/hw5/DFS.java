@@ -99,7 +99,7 @@ public class DFS
     	 
     	   LinkedStack<V> nodestack = new LinkedStack<V>();
     	   LinkedStack<Iterator<V>> edgestack = new LinkedStack<Iterator<V>>();
-    	   Iterator<V> siter = aGraph.adjacentTo(s).iterator();
+    	   Iterator<V> siter = (Iterator<V>) aGraph.adjacentTo(s).iterator();
     	   nodestack.push(s);
     	   edgestack.push(siter);
     	   while ( ! nodestack.isEmpty() )
@@ -114,7 +114,7 @@ public class DFS
     		    pred.put(w, c);
     	         Iterator<Edge<V,Integer>> witer = aGraph.adjacentTo(w).iterator();
     	         nodestack.push(w);
-    	         edgestack.push(witer);
+    	         edgestack.push((Iterator<V>) witer);
 //    	         return false;
     		  }
     		}
