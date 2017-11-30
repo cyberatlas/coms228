@@ -39,43 +39,39 @@ public class DFS
           HashMap<V, String> color = new HashMap<V, String>();
           HashMap<V, V> pred = new HashMap<V, V>();
           LinkedStack<V> topoOrder = new LinkedStack<V>();
-          System.out.println("Initialization");
-           System.out.println();
+//          System.out.println("Initialization");
+//           System.out.println();
           for ( V w : aGraph.vertices() )
             {
               color.put(w, "green"); // unreached
               pred.put(w, null);
-              System.out.println("Vertex: " + w + "  Color: " + color.get(w) + "  Pred: null");
+//              System.out.println("Vertex: " + w + "  Color: " + color.get(w) + "  Pred: null");
             }
 
-          System.out.println();
+//          System.out.println();
           for ( V w : aGraph.vertices() )
             if ( color.get(w).equals( "green" ) )
     	{
               visitDFS(aGraph, w, color, pred, topoOrder);
           //    if (visitDFS(aGraph, w, color, pred, topoOrder) == false) {return null;}
-              System.out.println();
+//              System.out.println();
     	}
 
-          System.out.println("\nDFS Forest");  // This display part is omitted in class.
+//          System.out.println("\nDFS Forest");  // This display part is omitted in class.
           for ( V w : aGraph.vertices() )
-           if ( pred.get(w) == null )
-             System.out.println( "The root of a DFS tree: " + w.toString() );
-           else
-             System.out.println( "Tree edge: "
-    	       + pred.get(w).toString()
-    	       + "->" +  w.toString() );
+//           if ( pred.get(w) == null )
+//             System.out.println( "The root of a DFS tree: " + w.toString() );
+//           else 
+//             System.out.println( "Tree edge: "
+//    	       + pred.get(w).toString()
+//    	       + "->" +  w.toString() );
 
-          System.out.println( "Topological Sorting:");
+//          System.out.println( "Topological Sorting:");
           while ( ! topoOrder.isEmpty() ) {
-             System.out.print(" " +  topoOrder.pop().toString() );
-          System.out.println();
+//             System.out.print(" " +  topoOrder.pop().toString() );
+//          System.out.println();
         }
-    	
-    	
-    	
-    	
-    	
+    
     	return topoOrder;
     }
 
@@ -102,13 +98,13 @@ public class DFS
     	// color.put(s, "red"); // reached but not processed
     	 
     	   LinkedStack<V> nodestack = new LinkedStack<V>();
-    	   LinkedStack<Iterator<Edge<V,Integer>>> edgestack = new LinkedStack<Iterator<Edge<V,Integer>>>();
-    	   Iterator<Edge<V,Integer>> siter = aGraph.adjacentTo(s).iterator();
+    	   LinkedStack<Iterator<V>> edgestack = new LinkedStack<Iterator<V>>();
+    	   Iterator<V> siter = aGraph.adjacentTo(s).iterator();
     	   nodestack.push(s);
     	   edgestack.push(siter);
     	   while ( ! nodestack.isEmpty() )
     	   { V c = nodestack.peek();
-    	     Iterator<Edge<V,Integer>> citer = edgestack.peek();
+    	     Iterator<Edge<V,Integer>> citer =(Iterator<Edge<V, Integer>>) edgestack.peek();
     	     if ( citer.hasNext() )
     		{ V w = citer.next().getVertex();
     		  	if(color.get(w).equals("red")) {return false;}
