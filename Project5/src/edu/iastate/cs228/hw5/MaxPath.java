@@ -44,6 +44,28 @@ public class MaxPath {
     public static <V> Integer findMaxPath(DiGraph<V> G, LinkedStack<V> maxPath)
     { // TODO
     	
+    	//If G is null or maxPath is null, then it throws IllegalArgumentException with the message "null arguments". 
+    	if(G==null || maxPath == null ) {throw new IllegalArgumentException("Null arguments");}
+    	
+    	// If maxPath is not empty, then it throws IllegalArgumentException with the message "maxPath is not empty".
+    	if (!maxPath.isEmpty()) {throw new IllegalArgumentException("maxPath is not empty");}
+    	
+    	LinkedStack <V> topoOrder = DFS.depthFirstSearch(G);
+    	
+// If topoOrder is null, then it throws IllegalArgumentException with the message "The graph has a cycle".
+    	if (topoOrder ==null ) {throw new IllegalArgumentException("The graph has a cycle");}
+//    	If topoOrder is empty, then it throws IllegalStateException with the message "topoOrder is empty".
+    	if (topoOrder.isEmpty()) {throw new IllegalArgumentException("topoOrderis empty");}
+    	
+//    	Then it creates a dist map and a pred map (see lecture code on Dijkstra's algorithm).
+    			// And it sets the value to 0 for each vertex in the dist map, and sets the value to null
+    			// for each vertex in the pred map.
+    	HashMap<V,Integer> dist = new HashMap<V,Integer>();
+//    	HashMap<V,V> pred = new HashMap<V,V>();
+    	
+    	while (topoOrder.pop())
+    	
+    	
     	return null;
     }
 }

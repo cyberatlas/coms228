@@ -25,7 +25,58 @@ public class DFS
     	
     	//TODO color all vertex green
     	//for each vertex check if green, if so  create linkedstack, create hashmap color, and create hashmap pred? and call visitDFS on it.
-    	return null;
+    	
+    	
+    	   // It visits the vertices of a graph
+        // in depth-first traversal, produces a depth-first forest, and
+        // generates a list of vertices in a topological order.
+       
+    	//public static <V> void depthFirstSearch(DiGraph<V> aGraph)
+        //{
+    	
+    		if (aGraph == null) {throw new IllegalArgumentException();}
+    			
+          HashMap<V, String> color = new HashMap<V, String>();
+          HashMap<V, V> pred = new HashMap<V, V>();
+          LinkedStack<V> topoOrder = new LinkedStack<V>();
+          System.out.println("Initialization");
+           System.out.println();
+          for ( V w : aGraph.vertices() )
+            {
+              color.put(w, "green"); // unreached
+              pred.put(w, null);
+              System.out.println("Vertex: " + w + "  Color: " + color.get(w) + "  Pred: null");
+            }
+
+          System.out.println();
+          for ( V w : aGraph.vertices() )
+            if ( color.get(w).equals( "green" ) )
+    	{
+              visitDFS(aGraph, w, color, pred, topoOrder);
+          //    if (visitDFS(aGraph, w, color, pred, topoOrder) == false) {return null;}
+              System.out.println();
+    	}
+
+          System.out.println("\nDFS Forest");  // This display part is omitted in class.
+          for ( V w : aGraph.vertices() )
+           if ( pred.get(w) == null )
+             System.out.println( "The root of a DFS tree: " + w.toString() );
+           else
+             System.out.println( "Tree edge: "
+    	       + pred.get(w).toString()
+    	       + "->" +  w.toString() );
+
+          System.out.println( "Topological Sorting:");
+          while ( ! topoOrder.isEmpty() ) {
+             System.out.print(" " +  topoOrder.pop().toString() );
+          System.out.println();
+        }
+    	
+    	
+    	
+    	
+    	
+    	return topoOrder;
     }
 
     // This method implements an iterative depth-first search algorithm for
@@ -60,13 +111,15 @@ public class DFS
     	     Iterator<Edge<V,Integer>> citer = edgestack.peek();
     	     if ( citer.hasNext() )
     		{ V w = citer.next().getVertex();
-    		  if ( color.get(w).equals( "green" ) )
+    		  	if(color.get(w).equals("red")) {return false;}
+    		  	else if ( color.get(w).equals( "green" ) )  
+    			  
     		  { color.put(w, "red"); // reached but not processed
     		    pred.put(w, c);
     	         Iterator<Edge<V,Integer>> witer = aGraph.adjacentTo(w).iterator();
     	         nodestack.push(w);
     	         edgestack.push(witer);
-    	         return false;
+//    	         return false;
     		  }
     		}
     		else
@@ -75,10 +128,14 @@ public class DFS
     		nodestack.pop(); // vertex c is removed
     	       edgestack.pop(); // its edge iterator is removed
     		}
-    	   }
+    	   } 
     	return true;
     	
     }     
+    
+    
+   
+    
     
     
     

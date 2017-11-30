@@ -28,7 +28,7 @@ System.out.println("Vertex: " + order.pop());
       
 System.out.println();
         LinkedStack<String> path = new LinkedStack<String>();
-System.out.println("Distance of a max path: " + MaxPath.findMaxPath(G8, path) );
+//System.out.println("Distance of a max path: " + MaxPath.findMaxPath(G8, path) );
 System.out.println("Each vertex in the max path: ");
         while ( ! path.isEmpty() )
 System.out.println("Vertex: " + path.pop());
